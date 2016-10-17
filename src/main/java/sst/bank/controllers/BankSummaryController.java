@@ -18,12 +18,15 @@ public class BankSummaryController {
     private Label summaryLabel;
     @FXML
     TreeView<String> treeView;
+    @FXML
+    OperationsListController operationsByMonthController;
 
     public void setTitle(String title) {
 	this.byLabel.setText(title);
     }
 
     public void setTreeViewData(List<BankSummary> list) {
+	System.out.println("operationsByMonthController=" + operationsByMonthController);
 	System.out.println("[setTreeViewData] list = " + list.size());
 	String year = null;
 	TreeItem<String> root = new TreeItem<String>("Calendar");

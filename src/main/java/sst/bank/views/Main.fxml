@@ -11,12 +11,12 @@
         <tabs>
 				<Tab fx:id="byMonthTab" text="By Month">
 					<content>
-						<fx:include fx:id="byMonthTab" source="BankSummaryView.fxml" />
+						<fx:include fx:id="byMonthTab" source="Tab1.fxml" />
 					</content>
 				</Tab>
 				<Tab text="By Category">
 					<content>
-						<fx:include fx:id="byCategoryTab" source="OperationsByCategoriesView.fxml" />
+						<fx:include fx:id="byCategoryTab" source="OperationsByCategoryView.fxml" />
 					</content>
 				</Tab>
         </tabs>
