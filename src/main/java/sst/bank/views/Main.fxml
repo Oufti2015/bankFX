@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="423.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sst.bank.controllers.OuftiBankController">
+   <children>
+      <TabPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+        <tabs>
+				<Tab fx:id="byMonthTab" text="By Month">
+					<content>
+						<fx:include fx:id="byMonthTab" source="BankSummaryView.fxml" />
+					</content>
+				</Tab>
+				<Tab text="By Category">
+					<content>
+						<fx:include fx:id="byCategoryTab" source="OperationsByCategoriesView.fxml" />
+					</content>
+				</Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

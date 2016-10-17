@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="597.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sst.bank.controllers.OperationsByCategoriesController">
+	<children>
+		<Label fx:id="byCatLabel" layoutX="218.0" layoutY="6.0" prefHeight="17.0" prefWidth="200.0" text="By" AnchorPane.topAnchor="5.0" />
+		<Label fx:id="fromCatLabel" layoutX="218.0" layoutY="33.0" prefHeight="17.0" prefWidth="200.0" text="From" AnchorPane.leftAnchor="218.0" AnchorPane.topAnchor="32.0" />
+		<TableView layoutX="220.0" layoutY="49.0" prefHeight="235.0" prefWidth="454.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="218.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="59.0">
+			<columns>
+				<TableColumn fx:id="idColumn" prefWidth="75.0" text="Id" />
+				<TableColumn fx:id="execDateColumn" prefWidth="75.0" text="Exec. Date" />
+				<TableColumn fx:id="valueDateColumn" prefWidth="75.0" text="Value Date" />
+				<TableColumn fx:id="amountColumn" prefWidth="75.0" text="Amount" />
+				<TableColumn fx:id="counterpartyColumn" prefWidth="75.0" text="Counterparty" />
+				<TableColumn fx:id="detailsColumn" prefWidth="75.0" text="Details" />
+			</columns>
+		</TableView>
+      <ListView fx:id="categoriesListView" layoutX="14.0" layoutY="66.0" prefHeight="587.0" prefWidth="207.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+	</children>
+</AnchorPane>
