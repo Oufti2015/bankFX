@@ -10,8 +10,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import lombok.extern.log4j.Log4j;
 import sst.bank.model.Category;
 
+@Log4j
 public class OperationsByCategoriesController {
     @FXML
     private Label byCatLabel;
@@ -19,6 +21,11 @@ public class OperationsByCategoriesController {
     private Label fromCatLabel;
     @FXML
     private ListView<Category> categoriesListView;
+
+    @FXML
+    private void initialize() {
+	log.info("initialize...");
+    }
 
     public void setTitle(String title) {
 	this.byCatLabel.setText(title);
@@ -37,7 +44,7 @@ public class OperationsByCategoriesController {
 		    @Override
 		    public void changed(ObservableValue<? extends Category> ov,
 					Category old_val, Category new_val) {
-			// System.out.println("" + old_val + "-" + new_val);
+			log.debug("" + old_val + "-" + new_val);
 		    }
 		});
     }

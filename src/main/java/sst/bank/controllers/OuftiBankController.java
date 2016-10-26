@@ -1,9 +1,11 @@
 package sst.bank.controllers;
 
 import javafx.fxml.FXML;
+import lombok.extern.log4j.Log4j;
 import sst.bank.OuftiBankFX;
 import sst.bank.model.container.BankContainer;
 
+@Log4j
 public class OuftiBankController {
     OuftiBankFX owner = null;
     @FXML
@@ -13,7 +15,7 @@ public class OuftiBankController {
 
     public OuftiBankController() {
 	super();
-	System.out.println("OuftiBankController...");
+	log.info("OuftiBankController...");
     }
 
     /**
@@ -22,9 +24,9 @@ public class OuftiBankController {
      */
     @FXML
     private void initialize() {
-	System.out.println("initialize...");
-	System.out.println("byMonthTabController = " + byMonthTabController);
-	System.out.println("byCategoryController = " + byCategoryTabController);
+	log.info("initialize...");
+	log.debug("byMonthTabController = " + byMonthTabController);
+	log.debug("byCategoryController = " + byCategoryTabController);
 
 	byMonthTabController.setTitle("By Month");
 	byCategoryTabController.setTitle("By Category");
@@ -34,7 +36,7 @@ public class OuftiBankController {
 
     @FXML
     public void update() {
-	System.out.println("Update...");
+	log.debug("Update...");
     }
 
     public void setOwner(OuftiBankFX ouftiBankFX) {

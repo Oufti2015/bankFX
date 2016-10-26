@@ -7,8 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import lombok.extern.log4j.Log4j;
 import sst.bank.model.BankSummary;
 
+@Log4j
 public class BankSummaryController {
     @FXML
     private Label byLabel;
@@ -21,13 +23,18 @@ public class BankSummaryController {
     @FXML
     OperationsListController operationsByMonthController;
 
+    @FXML
+    private void initialize() {
+	log.info("initialize...");
+    }
+
     public void setTitle(String title) {
 	this.byLabel.setText(title);
     }
 
     public void setTreeViewData(List<BankSummary> list) {
-	System.out.println("operationsByMonthController=" + operationsByMonthController);
-	System.out.println("[setTreeViewData] list = " + list.size());
+	log.debug("operationsByMonthController=" + operationsByMonthController);
+	log.debug("[setTreeViewData] list = " + list.size());
 	String year = null;
 	TreeItem<String> root = new TreeItem<String>("Calendar");
 	TreeItem<String> currentTreeItem = null;

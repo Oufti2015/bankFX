@@ -9,26 +9,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import sst.bank.activities.a.config.CategoriesLoader;
-import sst.bank.activities.a.config.Configurator;
-import sst.bank.activities.b.loading.OperationsLoader;
-import sst.bank.activities.e.grouping.OperationsGrouper;
+import lombok.extern.log4j.Log4j;
+import sst.bank.activities.LifeCycleInterface;
 import sst.bank.controllers.OuftiBankController;
 
+@Log4j
 public class OuftiBankFX extends Application {
     private Stage primaryStage;
     private AnchorPane rootLayout;
 
     public static void main(String[] args) {
+	log.info("+----------------------------------------------------------------------------------------------+");
+	log.info("|----O-U-F-T-I----B-A-N-K----------------------------------------------------------------------|");
+	log.info("+----------------------------------------------------------------------------------------------+");
+
 	launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
-	new CategoriesLoader().run();
-	new Configurator().run();
-	new OperationsLoader().run();
-	new OperationsGrouper().run();
+	LifeCycleInterface.runReadOnlyLifeCyle();
 
 	// set title
 	this.primaryStage = primaryStage;
@@ -60,14 +60,14 @@ public class OuftiBankFX extends Application {
 	    Scene scene = new Scene(rootLayout);
 	    primaryStage.setScene(scene);
 	    primaryStage.show();
-	    primaryStage.resizableProperty().addListener(new ChangeListener<Boolean>(){
-		    @Override
-		    public void changed(ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2){
-			System.out.println("arg0 = "+arg0);
-			System.out.println("arg1 = "+arg1);
-			System.out.println("arg2 = "+arg2);
-		    }
-		});
+	    primaryStage.resizableProperty().addListener(new ChangeListener<Boolean>() {
+		@Override
+		public void changed(ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2) {
+		    log.debug("arg0 = " + arg0);
+		    log.debug("arg1 = " + arg1);
+		    log.debug("arg2 = " + arg2);
+		}
+	    });
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
