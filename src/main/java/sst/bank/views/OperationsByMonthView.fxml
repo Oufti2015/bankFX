@@ -25,7 +25,7 @@
 
 		<AnchorPane layoutX="218.0" layoutY="59.0" prefHeight="420.0" prefWidth="472.0" AnchorPane.bottomAnchor="303.0" AnchorPane.leftAnchor="218.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="59.0">
 			<children>
-				<fx:include fx:id="operationsByMonth" source="OperationsListView.fxml" />
+				<fx:include fx:id="operationsByMonth" source="Tab2.fxml" />
 			</children>
 		</AnchorPane>
 	</children>
