@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sst.bank.controllers.BankSummaryController">
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <Label fx:id="byLabel" text="By" GridPane.columnIndex="1" />
+      <Label fx:id="fromLabel" text="From" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <children><fx:include source="OperationsListView.fxml" /></children>
+      </AnchorPane>
+      <Label fx:id="summaryLabel" text="Summary" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+			<columns>
+				<TableColumn fx:id="sumCategoryColumn" prefWidth="117.0" text="Category" />
+				<TableColumn fx:id="sumAmountColumn" prefWidth="82.0" text="Amount" />
+				<TableColumn fx:id="sumBudgetColumn" prefWidth="92.0" text="Budget" />
+				<TableColumn fx:id="sumDiffColumn" prefWidth="83.0" text="Differ." />
+			</columns>
+      </TableView>
+      <TreeView fx:id="treeView" prefHeight="201.0" prefWidth="200.0" GridPane.rowSpan="2147483647" />
+   </children>
+</GridPane>
