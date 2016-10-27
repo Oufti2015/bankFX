@@ -1,24 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
 
-<AnchorPane prefHeight="597.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sst.bank.controllers.OperationsByCategoriesController">
-	<children>
-		<Label fx:id="byCatLabel" layoutX="218.0" layoutY="6.0" prefHeight="17.0" prefWidth="200.0" text="By" AnchorPane.topAnchor="5.0" />
-		<Label fx:id="fromCatLabel" layoutX="218.0" layoutY="33.0" prefHeight="17.0" prefWidth="200.0" text="From" AnchorPane.leftAnchor="218.0" AnchorPane.topAnchor="32.0" />
-		<TableView layoutX="220.0" layoutY="49.0" prefHeight="235.0" prefWidth="454.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="218.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="59.0">
-			<columns>
-				<TableColumn fx:id="idColumn" prefWidth="75.0" text="Id" />
-				<TableColumn fx:id="execDateColumn" prefWidth="75.0" text="Exec. Date" />
-				<TableColumn fx:id="valueDateColumn" prefWidth="75.0" text="Value Date" />
-				<TableColumn fx:id="amountColumn" prefWidth="75.0" text="Amount" />
-				<TableColumn fx:id="counterpartyColumn" prefWidth="75.0" text="Counterparty" />
-				<TableColumn fx:id="detailsColumn" prefWidth="75.0" text="Details" />
-			</columns>
-		</TableView>
-      <ListView fx:id="categoriesListView" layoutX="14.0" layoutY="66.0" prefHeight="587.0" prefWidth="207.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-	</children>
-</AnchorPane>
+
+<GridPane prefHeight="235.0" prefWidth="382.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sst.bank.controllers.OperationsByCategoriesController">
+   <columnConstraints>
+      <ColumnConstraints minWidth="10.0" percentWidth="1.0" prefWidth="100.0" />
+      <ColumnConstraints minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+      <ColumnConstraints minWidth="10.0" percentWidth="1.0" prefWidth="100.0" />
+      <ColumnConstraints minWidth="10.0" percentWidth="78.0" prefWidth="100.0" />
+      <ColumnConstraints minWidth="10.0" percentWidth="1.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" percentHeight="1.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" percentHeight="8.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" percentHeight="8.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" percentHeight="82.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" percentHeight="1.0" prefHeight="30.0" />
+   </rowConstraints>
+   <children>
+      <ListView fx:id="categoriesListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3" />
+      <Label fx:id="byCatLabel" text="Operations by Category" GridPane.columnIndex="3" GridPane.rowIndex="1">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="fromCatLabel" text="From" GridPane.columnIndex="3" GridPane.rowIndex="2">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+      			<children>
+				<fx:include source="OperationsListView.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+			</children>
+      
+      </AnchorPane>
+   </children>
+</GridPane>

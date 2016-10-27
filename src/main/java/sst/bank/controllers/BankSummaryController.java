@@ -1,12 +1,15 @@
 package sst.bank.controllers;
 
-import java.time.Year;
-import java.util.List;
+import java.util.Collection;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import lombok.extern.log4j.Log4j;
 import sst.bank.model.BankSummary;
 
@@ -19,7 +22,7 @@ public class BankSummaryController {
     @FXML
     private Label summaryLabel;
     @FXML
-    TreeView<String> treeView;
+    ListView<BankSummary> listViewByMonth;
     @FXML
     OperationsListController operationsByMonthController;
 
@@ -32,21 +35,21 @@ public class BankSummaryController {
 	this.byLabel.setText(title);
     }
 
-    public void setTreeViewData(List<BankSummary> list) {
-	log.debug("operationsByMonthController=" + operationsByMonthController);
-	log.debug("[setTreeViewData] list = " + list.size());
-	String year = null;
-	TreeItem<String> root = new TreeItem<String>("Calendar");
-	TreeItem<String> currentTreeItem = null;
-	for (BankSummary summary : list) {
-	    if (year == null || !year.equals("" + Year.from(summary.getStartDate()))) {
-		year = "" + Year.from(summary.getStartDate());
-		currentTreeItem = new TreeItem<String>(year);
-		root.getChildren().add(currentTreeItem);
-	    }
-	    currentTreeItem.getChildren()
-		    .add(new TreeItem<String>(summary.getId()));
+    public void setTreeViewData(Collection<BankSummary> list) {
+	ObservableList<BankSummary> items = FXCollections.observableArrayList();
+	for (BankSummary item : list) {
+	    items.add(item);
 	}
-	treeView.setRoot(root);
+	listViewByMonth.setItems(items);
+	listViewByMonth.setEditable(true);
+	listViewByMonth.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+	listViewByMonth.getSelectionModel().selectedItemProperty().addListener(
+		new ChangeListener<BankSummary>() {
+		    @Override
+		    public void changed(ObservableValue<? extends BankSummary> ov,
+					BankSummary old_val, BankSummary new_val) {
+			log.debug("" + old_val + "-" + new_val);
+		    }
+		});
     }
 }

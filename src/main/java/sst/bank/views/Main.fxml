@@ -11,7 +11,7 @@
         <tabs>
 				<Tab fx:id="byMonthTab" text="By Month">
 					<content>
-						<fx:include fx:id="byMonthTab" source="obvm.fxml" />
+						<fx:include fx:id="byMonthTab" source="OperationsByMonthView.fxml" />
 					</content>
 				</Tab>
 				<Tab text="By Category">
