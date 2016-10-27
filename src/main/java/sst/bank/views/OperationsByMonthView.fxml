@@ -41,7 +41,7 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-		<TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
+		<TableView fx:id="budgetTableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
 			<columns>
 				<TableColumn fx:id="sumCategoryColumn" prefWidth="117.0" text="Category" />
 				<TableColumn fx:id="sumAmountColumn" prefWidth="82.0" text="Amount" />
