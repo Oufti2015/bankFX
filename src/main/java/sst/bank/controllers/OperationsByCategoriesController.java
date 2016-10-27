@@ -12,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import lombok.extern.log4j.Log4j;
 import sst.bank.model.Category;
+import sst.bank.model.container.BankContainer;
 
 @Log4j
 public class OperationsByCategoriesController {
@@ -21,6 +22,8 @@ public class OperationsByCategoriesController {
     private Label fromCatLabel;
     @FXML
     private ListView<Category> categoriesListView;
+    @FXML
+    OperationsListController operationsByCategoryController;
 
     @FXML
     private void initialize() {
@@ -45,6 +48,7 @@ public class OperationsByCategoriesController {
 		    public void changed(ObservableValue<? extends Category> ov,
 					Category old_val, Category new_val) {
 			log.debug("" + old_val + "-" + new_val);
+			operationsByCategoryController.setData(BankContainer.me().getBankSummaryByCategory(new_val));
 		    }
 		});
     }

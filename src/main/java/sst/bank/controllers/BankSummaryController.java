@@ -29,6 +29,16 @@ public class BankSummaryController {
     @FXML
     private void initialize() {
 	log.info("initialize...");
+	
+	listViewByMonth.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<BankSummary>() {
+
+	    @Override
+	    public void changed(ObservableValue<? extends BankSummary> observable, BankSummary oldValue, BankSummary newValue) {
+	        // Your action here
+	       log.debug("Selected item: " + newValue);
+	       operationsByMonthController.setData(newValue);
+	    }
+	});
     }
 
     public void setTitle(String title) {

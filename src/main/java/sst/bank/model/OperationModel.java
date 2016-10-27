@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class OperationModel {
@@ -18,6 +22,18 @@ public class OperationModel {
     private StringProperty detail;
     private StringProperty account;
     private StringProperty category;
+
+    public OperationModel(Operation op) {
+	this.bankId = new SimpleIntegerProperty(op.getBankId());
+	this.fortisId = new SimpleStringProperty(
+		op.getFortisId() != null ? op.getFortisId() : op.getBankId().toString());
+	this.executionDate = new SimpleObjectProperty<LocalDate>(op.getExecutionDate());
+	this.valueDate = new SimpleObjectProperty<LocalDate>(op.getValueDate());
+	this.amount = new SimpleDoubleProperty(op.getAmount().doubleValue());
+	this.counterparty = new SimpleStringProperty(op.getCounterparty());
+	this.detail = new SimpleStringProperty(op.getDetail());
+	this.category = new SimpleStringProperty(op.getCategory() == null ? "" : op.getCategory().getName());
+    }
 
     public IntegerProperty bankId() {
 	return bankId;

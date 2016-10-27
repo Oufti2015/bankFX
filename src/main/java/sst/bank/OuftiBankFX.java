@@ -1,5 +1,6 @@
 package sst.bank;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -41,6 +42,10 @@ public class OuftiBankFX extends Application {
 	initRootLayout();
 	primaryStage.setMaximized(true);
 	// primaryStage.setFullScreen(true);
+	Scene scene = primaryStage.getScene();
+	File f = new File("bankFX2.css");
+	scene.getStylesheets().clear();
+	scene.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
     }
 
     /**
