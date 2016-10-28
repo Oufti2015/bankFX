@@ -30,7 +30,7 @@ public class OuftiBankController {
 
 	byMonthTabController.setTitle("By Month");
 	byCategoryTabController.setTitle("By Category");
-	byMonthTabController.setTreeViewData(BankContainer.me().operationsByMonth());
+	byMonthTabController.setListViewData(BankContainer.me().operationsByMonth());
 	byCategoryTabController.setTreeViewData(BankContainer.me().getCategories());
     }
 

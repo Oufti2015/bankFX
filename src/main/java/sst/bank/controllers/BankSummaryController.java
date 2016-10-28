@@ -3,6 +3,7 @@ package sst.bank.controllers;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -84,11 +85,15 @@ public class BankSummaryController {
 	this.byLabel.setText(title);
     }
 
-    public void setTreeViewData(Collection<BankSummary> list) {
+    public void setListViewData(Collection<BankSummary> list) {
 	ObservableList<BankSummary> items = FXCollections.observableArrayList();
-	for (BankSummary item : list) {
+	for (BankSummary item : list
+		.stream()
+		.sorted(new DescendingBankSummaryComparator())
+		.collect(Collectors.toList())) {
 	    items.add(item);
 	}
 	listViewByMonth.setItems(items);
+	listViewByMonth.getSelectionModel().select(0);
     }
 }

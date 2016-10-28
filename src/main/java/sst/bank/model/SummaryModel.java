@@ -15,7 +15,7 @@ public class SummaryModel {
 
     public SummaryModel(Category category, double amount) {
 
-	this.category = new SimpleStringProperty(category.getName());
+	this.category = new SimpleStringProperty(category.getFxName());
 	this.amount = new SimpleDoubleProperty(amount);
 	BigDecimal budgetMonthlyControlledAmount = category.getBudget().monthlyControlledAmount();
 	this.budget = new SimpleDoubleProperty(budgetMonthlyControlledAmount.doubleValue());

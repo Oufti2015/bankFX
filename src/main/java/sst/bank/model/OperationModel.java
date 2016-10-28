@@ -32,7 +32,7 @@ public class OperationModel {
 	this.amount = new SimpleDoubleProperty(op.getAmount().doubleValue());
 	this.counterparty = new SimpleStringProperty(op.getCounterparty());
 	this.detail = new SimpleStringProperty(op.getDetail());
-	this.category = new SimpleStringProperty(op.getCategory() == null ? "" : op.getCategory().getName());
+	this.category = new SimpleStringProperty(op.getCategory() == null ? "" : op.getCategory().getFxName());
     }
 
     public IntegerProperty bankId() {

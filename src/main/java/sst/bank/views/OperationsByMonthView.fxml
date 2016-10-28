@@ -18,10 +18,10 @@
       <RowConstraints minHeight="10.0" percentHeight="1.0" prefHeight="30.0" />
 		<RowConstraints percentHeight="4.0" />
 		<RowConstraints percentHeight="4.0" />
-		<RowConstraints percentHeight="54.0" />
+		<RowConstraints percentHeight="45.0" />
 		<RowConstraints percentHeight="4.0" />
-		<RowConstraints percentHeight="32.0" />
-      	<RowConstraints minHeight="10.0" percentHeight="1.0" prefHeight="30.0" />
+		<RowConstraints percentHeight="33.0" />
+      	<RowConstraints percentHeight="10.0" />
 	</rowConstraints>
 	<children>
 		<Label fx:id="byLabel" text="By" GridPane.columnIndex="3" GridPane.rowIndex="1">
