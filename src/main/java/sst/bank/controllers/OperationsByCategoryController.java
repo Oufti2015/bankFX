@@ -1,6 +1,7 @@
 package sst.bank.controllers;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -11,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import lombok.extern.log4j.Log4j;
+import sst.bank.controllers.utils.CategoryComparator;
 import sst.bank.model.Category;
 import sst.bank.model.container.BankContainer;
 
@@ -36,7 +38,10 @@ public class OperationsByCategoryController {
 
     public void setTreeViewData(Collection<Category> list) {
 	ObservableList<Category> categories = FXCollections.observableArrayList();
-	for (Category category : list) {
+	for (Category category : list
+		.stream()
+		.sorted(new CategoryComparator())
+		.collect(Collectors.toList())) {
 	    categories.add(category);
 	}
 	categoriesListView.setItems(categories);
