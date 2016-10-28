@@ -12,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lombok.extern.log4j.Log4j;
 import sst.bank.activities.LifeCycleInterface;
-import sst.bank.controllers.OuftiBankController;
+import sst.bank.controllers.MainController;
 
 @Log4j
 public class OuftiBankFX extends Application {
@@ -58,7 +58,7 @@ public class OuftiBankFX extends Application {
 	    loader.setLocation(OuftiBankFX.class.getResource("views/Main.fxml"));
 	    rootLayout = (AnchorPane) loader.load();
 
-	    OuftiBankController controller = loader.getController();
+	    MainController controller = loader.getController();
 	    controller.setOwner(this);
 
 	    // Show the scene containing the root layout.

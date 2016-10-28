@@ -15,7 +15,7 @@ import sst.bank.model.Category;
 import sst.bank.model.container.BankContainer;
 
 @Log4j
-public class OperationsByCategoriesController {
+public class OperationsByCategoryController {
     @FXML
     private Label byCatLabel;
     @FXML

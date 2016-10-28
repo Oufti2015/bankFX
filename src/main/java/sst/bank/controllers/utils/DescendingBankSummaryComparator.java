@@ -1,4 +1,4 @@
-package sst.bank.controllers;
+package sst.bank.controllers.utils;
 
 import java.util.Comparator;
 

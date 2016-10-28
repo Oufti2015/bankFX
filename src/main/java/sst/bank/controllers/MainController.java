@@ -6,14 +6,14 @@ import sst.bank.OuftiBankFX;
 import sst.bank.model.container.BankContainer;
 
 @Log4j
-public class OuftiBankController {
+public class MainController {
     OuftiBankFX owner = null;
     @FXML
-    private BankSummaryController byMonthTabController;
+    private OperationsByMonthController byMonthTabController;
     @FXML
-    private OperationsByCategoriesController byCategoryTabController;
+    private OperationsByCategoryController byCategoryTabController;
 
-    public OuftiBankController() {
+    public MainController() {
 	super();
 	log.info("OuftiBankController...");
     }

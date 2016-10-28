@@ -4,10 +4,15 @@ import java.time.LocalDate;
 import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.Callback;
 import lombok.extern.log4j.Log4j;
+import sst.bank.controllers.utils.DoubleStringConverter;
+import sst.bank.controllers.utils.LocalDateStringConverter;
 import sst.bank.model.BankSummary;
 import sst.bank.model.OperationModel;
 
@@ -44,6 +49,26 @@ public class OperationsListController {
 	amountColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, Double>("amount"));
 	counterpartyColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, String>("counterparty"));
 	detailsColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, String>("detail"));
+
+	formatDoubleColumn(amountColumn);
+	formatLocalDateColumn(executionDateColumn);
+	formatLocalDateColumn(valueDateColumn);
+    }
+
+    private static Callback<TableColumn<OperationModel, Double>, TableCell<OperationModel, Double>> forTableColumn = TextFieldTableCell
+	    .<OperationModel, Double> forTableColumn(new DoubleStringConverter());
+
+    private void formatDoubleColumn(TableColumn<OperationModel, Double> column) {
+	column.setCellFactory(forTableColumn);
+	column.setStyle("-fx-alignment: CENTER-RIGHT;");
+    }
+
+    private static Callback<TableColumn<OperationModel, LocalDate>, TableCell<OperationModel, LocalDate>> forTableColumLocalDate = TextFieldTableCell
+	    .<OperationModel, LocalDate> forTableColumn(new LocalDateStringConverter());
+
+    private void formatLocalDateColumn(TableColumn<OperationModel, LocalDate> column) {
+	column.setCellFactory(forTableColumLocalDate);
+	// column.setStyle("-fx-alignment: CENTER-RIGHT;");
     }
 
     public void setData(BankSummary bm) {
