@@ -2,20 +2,25 @@ package sst.bank;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lombok.extern.log4j.Log4j;
 import sst.bank.activities.LifeCycleInterface;
+import sst.bank.config.BankConfiguration;
 import sst.bank.controllers.MainController;
 
 @Log4j
 public class OuftiBankFX extends Application {
+    public static final String ICON = BankConfiguration.PATH + File.separator + "euro1.jpg";
+
     private Stage primaryStage;
     private AnchorPane rootLayout;
 
@@ -46,6 +51,14 @@ public class OuftiBankFX extends Application {
 	File f = new File("bankFX2.css");
 	scene.getStylesheets().clear();
 	scene.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
+
+	InputStream resourceAsStream = OuftiBankFX.class.getResourceAsStream(ICON);
+	if (resourceAsStream != null) {
+	    primaryStage.getIcons().add(new Image(resourceAsStream));
+	} else {
+	    log.error("Cannot load icon <" + ICON + ">");
+	    primaryStage.getIcons().add(new Image("euro3.png"));
+	}
     }
 
     /**

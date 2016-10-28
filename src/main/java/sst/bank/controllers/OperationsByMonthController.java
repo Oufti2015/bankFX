@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import lombok.extern.log4j.Log4j;
 import sst.bank.controllers.utils.DescendingBankSummaryComparator;
 import sst.bank.model.BankSummary;
+import sst.bank.model.container.BankContainer;
 
 @Log4j
 public class OperationsByMonthController {
@@ -26,10 +27,10 @@ public class OperationsByMonthController {
     private ListView<BankSummary> listViewByMonth;
     @FXML
     private OperationsListController operationsByMonthController;
-    // @FXML
-    // private BorderPane summaryList;
     @FXML
     private SummaryListController summaryListController;
+    @FXML
+    private TotalController totalController;
 
     @FXML
     private void initialize() {
@@ -52,6 +53,21 @@ public class OperationsByMonthController {
 		operationsByMonthController.setData(newValue);
 		fromLabel.setText("From " + newValue.getStartDate() + " to " + newValue.getEndDate());
 		summaryListController.setData(newValue);
+
+		totalController.setOperations(BankContainer.me().operations().size());
+		totalController.setOperationsMonth(newValue.operationsCount());
+		Double total = newValue.getSummary().values()
+			.stream()
+			.mapToDouble(o -> o.doubleValue())
+			.sum();
+		totalController.setTotal(total);
+		Double budget = BankContainer.me().getCategories()
+			.stream()
+			.mapToDouble(c -> c.getBudget().getControlledAmount().doubleValue())
+			.sum();
+		totalController.setBudget(budget);
+		totalController.setResult(total - budget);
+		totalController.setCreationDate(BankContainer.me().getCreationDate());
 	    }
 	});
     }

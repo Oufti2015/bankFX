@@ -2,6 +2,7 @@ package sst.bank.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
@@ -11,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
 import lombok.extern.log4j.Log4j;
+import sst.bank.controllers.utils.CategoryComparator;
 import sst.bank.controllers.utils.DoubleStringConverter;
 import sst.bank.model.BankSummary;
 import sst.bank.model.Category;
@@ -55,7 +57,10 @@ public class SummaryListController {
 
     public void setData(BankSummary newValue) {
 	List<SummaryModel> list = new ArrayList<>();
-	for (Category cat : newValue.getSummary().keySet()) {
+	for (Category cat : newValue.getSummary().keySet()
+		.stream()
+		.sorted(new CategoryComparator())
+		.collect(Collectors.toList())) {
 	    SummaryModel e = new SummaryModel(cat, newValue.getSummary().get(cat).doubleValue());
 	    list.add(e);
 	    log.debug("" + cat + " : " + e);
