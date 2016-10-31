@@ -21,6 +21,12 @@
 			<artifactId>testfx-junit</artifactId>
 			<version>4.0.4-alpha</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>20.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

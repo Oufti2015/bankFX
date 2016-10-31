@@ -63,7 +63,7 @@ public class SummaryListController {
 		.collect(Collectors.toList())) {
 	    SummaryModel e = new SummaryModel(cat, newValue.getSummary().get(cat).doubleValue());
 	    list.add(e);
-	    log.debug("" + cat + " : " + e);
+	    log.debug("" + cat + " : " + e + " " + e.getBudget());
 	}
 
 	budgetTableView.getItems().setAll(list);

@@ -4,6 +4,9 @@ import java.util.stream.Collectors;
 
 import org.junit.Assert;
 
+import com.google.common.eventbus.DeadEvent;
+import com.google.common.eventbus.Subscribe;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -12,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import lombok.extern.log4j.Log4j;
 import sst.bank.controllers.utils.CategoryComparator;
+import sst.bank.events.CategoryChangeEvent;
 import sst.bank.model.Category;
 import sst.bank.model.container.BankContainer;
 
@@ -45,5 +49,15 @@ public class CategoriesController {
 			editCategoryController.setData(new_val);
 		    }
 		});
+    }
+
+    @Subscribe
+    public void handleEvent(CategoryChangeEvent e) {
+	log.debug("" + e.getCategory() + " has changed.");
+    }
+
+    @Subscribe
+    public void deadEvents(DeadEvent e) {
+	log.debug("Event " + e.getEvent() + " not subscribed...");
     }
 }

@@ -12,6 +12,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import lombok.extern.log4j.Log4j;
+import sst.bank.OuftiBankFX;
+import sst.bank.events.CategoryChangeEvent;
 import sst.bank.model.Category;
 import sst.bank.model.Category.CategoryType;
 
@@ -53,6 +55,8 @@ public class EditCategoryController {
 	Assert.assertNotNull(okButton);
 	Assert.assertNotNull(cancelButton);
 
+	setEditable(false);
+
 	typeComboBox.getItems().setAll(CategoryType.values());
 
 	okButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -66,6 +70,9 @@ public class EditCategoryController {
 		category.setType(typeComboBox.getValue());
 		category.setVisa(visaCheckBox.isSelected());
 		category.setDefaultCategory(defaultCheckBox.isSelected());
+
+		// EventBus eb = new EventBus();
+		OuftiBankFX.eventBus.post(new CategoryChangeEvent(category));
 	    }
 	});
 
@@ -77,10 +84,25 @@ public class EditCategoryController {
 	});
     }
 
+    private void setEditable(boolean b) {
+	budgetTextField.setDisable(!b);
+	nameTextField.setDisable(!b);
+	htmlLabelTextField.setDisable(!b);
+	fxNameTextField.setDisable(!b);
+	styleTextField.setDisable(!b);
+	typeComboBox.setDisable(!b);
+	visaCheckBox.setDisable(!b);
+	defaultCheckBox.setDisable(!b);
+	okButton.setDisable(!b);
+	cancelButton.setDisable(!b);
+    }
+
     public void setData(Category category) {
 	this.category = category;
 
 	setCategoryInfo();
+
+	setEditable(true);
     }
 
     private void setCategoryInfo() {

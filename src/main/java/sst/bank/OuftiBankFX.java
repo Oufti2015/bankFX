@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.google.common.eventbus.DeadEvent;
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,12 +18,15 @@ import lombok.extern.log4j.Log4j;
 import sst.bank.activities.LifeCycleInterface;
 import sst.bank.config.BankConfiguration;
 import sst.bank.controllers.MainController;
+import sst.bank.events.CategoryChangeEvent;
 
 @Log4j
 public class OuftiBankFX extends Application {
     private static final String VIEWS_MAIN_FXML = "views/Main.fxml";
 
     public static final String ICON = BankConfiguration.PATH + File.separator + "euro1.jpg";
+
+    public final static EventBus eventBus = new EventBus();
 
     private Stage primaryStage;
     private AnchorPane rootLayout;
@@ -34,6 +41,7 @@ public class OuftiBankFX extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+	eventBus.register(this);
 	LifeCycleInterface.runReadOnlyLifeCyle();
 
 	// set title
@@ -47,8 +55,8 @@ public class OuftiBankFX extends Application {
 	initRootLayout();
 	primaryStage.setMaximized(true);
 	// primaryStage.setFullScreen(true);
-	Scene scene = primaryStage.getScene();
-	File f = new File("bankFX2.css");
+	// Scene scene = primaryStage.getScene();
+	// File f = new File("bankFX2.css");
 	// scene.getStylesheets().clear();
 	// scene.getStylesheets().add("file:///" +
 	// f.getAbsolutePath().replace("\\", "/"));
@@ -83,5 +91,16 @@ public class OuftiBankFX extends Application {
 	} catch (IOException e) {
 	    log.fatal("Cannot load " + VIEWS_MAIN_FXML + " : ", e);
 	}
+    }
+
+    @Subscribe
+    public void handleEvent(CategoryChangeEvent e) {
+	log.debug("" + e.getCategory() + " has changed.");
+	LifeCycleInterface.saveCategories();
+    }
+
+    @Subscribe
+    public void deadEvents(DeadEvent e) {
+	log.debug("Event " + e.getEvent() + " not subscribed...");
     }
 }
