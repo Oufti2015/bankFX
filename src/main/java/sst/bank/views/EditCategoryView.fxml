@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	<columnConstraints>
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="1.0" prefWidth="100.0" />
+		<ColumnConstraints hgrow="SOMETIMES" percentWidth="40.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="1.0" prefWidth="100.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="47.0" prefWidth="100.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="1.0" prefWidth="100.0" />
+	</columnConstraints>
+	<rowConstraints>
+		<RowConstraints percentHeight="1.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="27.0" />
+	</rowConstraints>
+	<children>
+		<Label prefHeight="153.0" prefWidth="224.0" text="Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+		<Label prefHeight="153.0" prefWidth="224.0" text="HTML Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+		<Label prefHeight="153.0" prefWidth="224.0" text="FX Name" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+		<Label prefHeight="153.0" prefWidth="224.0" text="Style" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+		<Label prefHeight="153.0" prefWidth="224.0" text="Type" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+		<Label prefHeight="153.0" prefWidth="224.0" text="Budget" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <TextField GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <TextField GridPane.columnIndex="3" GridPane.rowIndex="4" />
+      <ComboBox prefHeight="27.0" prefWidth="240.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+      <CheckBox mnemonicParsing="false" text="VISA Category" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+      <CheckBox mnemonicParsing="false" text="Default category" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <TextField GridPane.columnIndex="3" GridPane.rowIndex="7" />
+      <Button mnemonicParsing="false" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <Button cancelButton="true" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+	</children>
+</GridPane>
