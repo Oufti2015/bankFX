@@ -12,6 +12,8 @@ public class MainController {
     private OperationsByMonthController byMonthTabController;
     @FXML
     private OperationsByCategoryController byCategoryTabController;
+    @FXML
+    private CategoriesController categoriesTabController;
 
     public MainController() {
 	super();

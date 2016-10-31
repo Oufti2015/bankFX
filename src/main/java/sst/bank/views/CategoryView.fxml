@@ -5,18 +5,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
 
-<GridPane prefHeight="287.0" prefWidth="320.0"
-	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane prefHeight="287.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sst.bank.controllers.CategoriesController">
 	<columnConstraints>
-		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-			percentWidth="1.0" prefWidth="100.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="1.0" prefWidth="100.0" />
 		<ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
-		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-			percentWidth="1.0" prefWidth="100.0" />
-		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-			percentWidth="78.0" prefWidth="100.0" />
-		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-			percentWidth="10.0" prefWidth="100.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="1.0" prefWidth="100.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="78.0" prefWidth="100.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
 	</columnConstraints>
 	<rowConstraints>
 		<RowConstraints percentHeight="1.0" />
@@ -24,12 +19,10 @@
 		<RowConstraints percentHeight="1.0" />
 	</rowConstraints>
 	<children>
-		<ListView prefHeight="200.0" prefWidth="200.0"
-			GridPane.columnIndex="1" GridPane.rowIndex="1" />
-		<AnchorPane prefHeight="200.0" prefWidth="200.0"
-			GridPane.columnIndex="3" GridPane.rowIndex="1">
+		<ListView fx:id="categoryListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+		<AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
 			<children>
-				<fx:include source="EditCategoryView.fxml" />
+				<fx:include fx:id="editCategory" source="EditCategoryView.fxml" />
 			</children>
 		</AnchorPane>
 	</children>

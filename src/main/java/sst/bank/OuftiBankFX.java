@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -19,6 +17,8 @@ import sst.bank.controllers.MainController;
 
 @Log4j
 public class OuftiBankFX extends Application {
+    private static final String VIEWS_MAIN_FXML = "views/Main.fxml";
+
     public static final String ICON = BankConfiguration.PATH + File.separator + "euro1.jpg";
 
     private Stage primaryStage;
@@ -49,8 +49,9 @@ public class OuftiBankFX extends Application {
 	// primaryStage.setFullScreen(true);
 	Scene scene = primaryStage.getScene();
 	File f = new File("bankFX2.css");
-	scene.getStylesheets().clear();
-	scene.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
+	// scene.getStylesheets().clear();
+	// scene.getStylesheets().add("file:///" +
+	// f.getAbsolutePath().replace("\\", "/"));
 
 	InputStream resourceAsStream = OuftiBankFX.class.getResourceAsStream(ICON);
 	if (resourceAsStream != null) {
@@ -67,8 +68,9 @@ public class OuftiBankFX extends Application {
     private void initRootLayout() {
 	try {
 	    // Load root layout from fxml file.
-	    FXMLLoader loader = new FXMLLoader();
-	    loader.setLocation(OuftiBankFX.class.getResource("views/Main.fxml"));
+	    FXMLLoader loader = null;
+	    loader = new FXMLLoader();
+	    loader.setLocation(OuftiBankFX.class.getResource(VIEWS_MAIN_FXML));
 	    rootLayout = (AnchorPane) loader.load();
 
 	    MainController controller = loader.getController();
@@ -78,16 +80,8 @@ public class OuftiBankFX extends Application {
 	    Scene scene = new Scene(rootLayout);
 	    primaryStage.setScene(scene);
 	    primaryStage.show();
-	    primaryStage.resizableProperty().addListener(new ChangeListener<Boolean>() {
-		@Override
-		public void changed(ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2) {
-		    log.debug("arg0 = " + arg0);
-		    log.debug("arg1 = " + arg1);
-		    log.debug("arg2 = " + arg2);
-		}
-	    });
 	} catch (IOException e) {
-	    e.printStackTrace();
+	    log.fatal("Cannot load " + VIEWS_MAIN_FXML + " : ", e);
 	}
     }
 }
