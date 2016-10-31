@@ -35,15 +35,15 @@ public class TotalController {
     }
 
     public void setTotal(Double amount) {
-	totalOperationsLabel.setText(String.format("%.2f €", amount));
+	totalOperationsLabel.setText(String.format("%.2f â‚¬", amount));
     }
 
     public void setBudget(Double amount) {
-	totalBudgetLabel.setText(String.format("%.2f €", amount));
+	totalBudgetLabel.setText(String.format("%.2f â‚¬", amount));
     }
 
     public void setResult(Double amount) {
-	resultLabel.setText(String.format("%.2f €", amount));
+	resultLabel.setText(String.format("%.2f â‚¬", amount));
     }
 
     public void setCreationDate(String date) {

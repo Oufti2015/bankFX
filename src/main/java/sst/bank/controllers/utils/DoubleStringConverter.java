@@ -15,7 +15,7 @@ public class DoubleStringConverter extends StringConverter<Double> {
 
     @Override
     public String toString(Double value) {
-	return nf.format(value) + " €";
+	return nf.format(value) + " â‚¬";
     }
 
     @Override
