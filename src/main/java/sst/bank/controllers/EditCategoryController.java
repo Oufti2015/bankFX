@@ -14,6 +14,8 @@ import javafx.scene.control.TextField;
 import lombok.extern.log4j.Log4j;
 import sst.bank.OuftiBankFX;
 import sst.bank.events.CategoryChangeEvent;
+import sst.bank.model.Budget.BudgetFrequencyType;
+import sst.bank.model.Budget.BudgetType;
 import sst.bank.model.Category;
 import sst.bank.model.Category.CategoryType;
 
@@ -40,6 +42,10 @@ public class EditCategoryController {
     private Button okButton;
     @FXML
     private Button cancelButton;
+    @FXML
+    private ComboBox<BudgetType> budgetTypeComboBox;
+    @FXML
+    private ComboBox<BudgetFrequencyType> budgetFreqTypeComboBox;
 
     @FXML
     private void initialize() {
@@ -52,14 +58,19 @@ public class EditCategoryController {
 	Assert.assertNotNull(typeComboBox);
 	Assert.assertNotNull(visaCheckBox);
 	Assert.assertNotNull(defaultCheckBox);
+	Assert.assertNotNull(budgetTypeComboBox);
+	Assert.assertNotNull(budgetFreqTypeComboBox);
 	Assert.assertNotNull(okButton);
 	Assert.assertNotNull(cancelButton);
 
 	setEditable(false);
 
 	typeComboBox.getItems().setAll(CategoryType.values());
+	budgetTypeComboBox.getItems().setAll(BudgetType.values());
+	budgetFreqTypeComboBox.getItems().setAll(BudgetFrequencyType.values());
 
 	okButton.setOnAction(new EventHandler<ActionEvent>() {
+
 	    @Override
 	    public void handle(ActionEvent e) {
 		category.setName(nameTextField.getText());
@@ -71,9 +82,12 @@ public class EditCategoryController {
 		category.setType(typeComboBox.getValue());
 		category.setVisa(visaCheckBox.isSelected());
 		category.setDefaultCategory(defaultCheckBox.isSelected());
+		category.getBudget().setBudgetType(budgetTypeComboBox.getValue());
+		category.getBudget().setBudgetFrequencyType(budgetFreqTypeComboBox.getValue());
 
 		// EventBus eb = new EventBus();
 		OuftiBankFX.eventBus.post(new CategoryChangeEvent(category));
+		setEditable(false);
 	    }
 	});
 
@@ -96,14 +110,17 @@ public class EditCategoryController {
 	defaultCheckBox.setDisable(!b);
 	okButton.setDisable(!b);
 	cancelButton.setDisable(!b);
+	budgetTypeComboBox.setDisable(!b);
+	budgetFreqTypeComboBox.setDisable(!b);
     }
 
     public void setData(Category category) {
 	this.category = category;
 
-	setCategoryInfo();
-
-	setEditable(true);
+	if (category != null) {
+	    setCategoryInfo();
+	    setEditable(true);
+	}
     }
 
     private void setCategoryInfo() {
@@ -115,5 +132,7 @@ public class EditCategoryController {
 	typeComboBox.getSelectionModel().select(category.getType());
 	visaCheckBox.setSelected(category.isVisa());
 	defaultCheckBox.setSelected(category.isDefaultCategory());
+	budgetTypeComboBox.getSelectionModel().select(category.getBudget().getBudgetType());
+	budgetFreqTypeComboBox.getSelectionModel().select(category.getBudget().getBudgetFrequencyType());
     }
 }

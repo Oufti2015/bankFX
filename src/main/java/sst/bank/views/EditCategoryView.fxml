@@ -24,7 +24,9 @@
 		<RowConstraints percentHeight="8.0" />
 		<RowConstraints percentHeight="8.0" />
 		<RowConstraints percentHeight="8.0" />
-		<RowConstraints percentHeight="27.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="11.0" />
 	</rowConstraints>
 	<children>
 		<Label contentDisplay="RIGHT" prefHeight="39.0" prefWidth="224.0" text="Name" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -33,6 +35,8 @@
 		<Label contentDisplay="RIGHT" prefHeight="153.0" prefWidth="224.0" text="Style" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 		<Label contentDisplay="RIGHT" prefHeight="153.0" prefWidth="224.0" text="Type" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 		<Label contentDisplay="RIGHT" prefHeight="153.0" prefWidth="224.0" text="Budget" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+		<Label contentDisplay="RIGHT" prefHeight="153.0" prefWidth="224.0" text="Budget Type" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+		<Label contentDisplay="RIGHT" prefHeight="153.0" prefWidth="224.0" text="Budget Frequency" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="9" />
       <TextField fx:id="nameTextField" maxWidth="-Infinity" GridPane.columnIndex="3" GridPane.rowIndex="1" />
       <TextField fx:id="htmlLabelTextField" maxWidth="-Infinity" GridPane.columnIndex="3" GridPane.rowIndex="2" />
       <TextField fx:id="fxNameTextField" maxWidth="-Infinity" GridPane.columnIndex="3" GridPane.rowIndex="3" />
@@ -41,7 +45,9 @@
       <CheckBox fx:id="visaCheckBox" mnemonicParsing="false" text="VISA Category" GridPane.columnIndex="3" GridPane.rowIndex="6" />
       <CheckBox fx:id="defaultCheckBox" mnemonicParsing="false" text="Default category" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       <TextField fx:id="budgetTextField" maxWidth="-Infinity" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-      <Button fx:id="okButton" mnemonicParsing="false" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+      <ComboBox fx:id="budgetTypeComboBox" prefHeight="27.0" prefWidth="240.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+      <ComboBox fx:id="budgetFreqTypeComboBox" prefHeight="27.0" prefWidth="240.0" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+      <Button fx:id="okButton" mnemonicParsing="false" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+      <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="3" GridPane.rowIndex="11" />
 	</children>
 </GridPane>

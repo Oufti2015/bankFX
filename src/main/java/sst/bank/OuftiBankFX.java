@@ -100,7 +100,7 @@ public class OuftiBankFX extends Application {
     public void handleEvent(CategoryChangeEvent e) {
 	log.info("" + e.getCategory() + " has changed.");
 	LifeCycleInterface.saveCategories();
-	LifeCycleInterface.runCompleteLifeCyle();
+	// LifeCycleInterface.runCompleteLifeCyle();
     }
 
     @Subscribe
