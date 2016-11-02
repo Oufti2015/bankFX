@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import lombok.extern.log4j.Log4j;
+import sst.bank.OuftiBankFX;
 import sst.bank.controllers.utils.DescendingBankSummaryComparator;
 import sst.bank.model.BankSummary;
 import sst.bank.model.container.BankContainer;
@@ -40,7 +41,7 @@ public class OperationsByMonthController {
 
 	if (summaryListController == null) {
 	    log.fatal("aController is not initialised...");
-	    System.exit(-1);
+	    OuftiBankFX.eventBus.post(new Exception("Controller not injected..."));
 	}
 
 	listViewByMonth.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<BankSummary>() {

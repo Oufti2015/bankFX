@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
 import lombok.extern.log4j.Log4j;
+import sst.bank.OuftiBankFX;
 import sst.bank.controllers.utils.CategoryComparator;
 import sst.bank.controllers.utils.DoubleStringConverter;
 import sst.bank.model.BankSummary;
@@ -40,11 +41,11 @@ public class SummaryListController {
 	log.info("initialize...");
 	if (budgetTableView == null) {
 	    log.fatal("budgetTableView is not initialised...");
-	    System.exit(-1);
+	    OuftiBankFX.eventBus.post(new Exception("Controller not injected"));
 	}
 	if (sumCategoryColumn == null) {
 	    log.fatal("sumCategoryColumn is not initialised...");
-	    System.exit(-1);
+	    OuftiBankFX.eventBus.post(new Exception("Controller not injected"));
 	}
 	sumCategoryColumn.setCellValueFactory(new PropertyValueFactory<SummaryModel, String>("category"));
 	sumAmountColumn.setCellValueFactory(new PropertyValueFactory<SummaryModel, Double>("amount"));

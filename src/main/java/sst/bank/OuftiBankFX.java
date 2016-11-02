@@ -26,10 +26,9 @@ public class OuftiBankFX extends Application {
 
     public static final String ICON = BankConfiguration.PATH + File.separator + "euro1.jpg";
 
-    public final static EventBus eventBus = new EventBus();
-
-    private Stage primaryStage;
+    public static EventBus eventBus = new EventBus();
     private AnchorPane rootLayout;
+    private Stage primaryStage;
 
     public static void main(String[] args) {
 	log.info("+----------------------------------------------------------------------------------------------+");
@@ -42,6 +41,9 @@ public class OuftiBankFX extends Application {
     @Override
     public void start(Stage primaryStage) {
 	eventBus.register(this);
+
+	// OuftiBankFX.eventBus.post(new Exception("Test"));
+
 	LifeCycleInterface.runReadOnlyLifeCyle();
 
 	// set title
@@ -90,17 +92,25 @@ public class OuftiBankFX extends Application {
 	    primaryStage.show();
 	} catch (IOException e) {
 	    log.fatal("Cannot load " + VIEWS_MAIN_FXML + " : ", e);
+	    OuftiBankFX.eventBus.post(e);
 	}
     }
 
     @Subscribe
     public void handleEvent(CategoryChangeEvent e) {
-	log.debug("" + e.getCategory() + " has changed.");
+	log.info("" + e.getCategory() + " has changed.");
 	LifeCycleInterface.saveCategories();
+	LifeCycleInterface.runCompleteLifeCyle();
     }
 
     @Subscribe
     public void deadEvents(DeadEvent e) {
-	log.debug("Event " + e.getEvent() + " not subscribed...");
+	log.info("Event " + e.getEvent() + " not subscribed...");
+    }
+
+    @Subscribe
+    public void fatalError(Exception e) {
+	log.fatal("FATAL error detected", e);
+	System.exit(-1);
     }
 }

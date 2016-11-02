@@ -67,6 +67,7 @@ public class EditCategoryController {
 		category.setFxName(fxNameTextField.getText());
 		category.setStyle(styleTextField.getText());
 		category.getBudget().setAmount(new BigDecimal(budgetTextField.getText()));
+		category.getBudget().setControlledAmount(new BigDecimal(budgetTextField.getText()));
 		category.setType(typeComboBox.getValue());
 		category.setVisa(visaCheckBox.isSelected());
 		category.setDefaultCategory(defaultCheckBox.isSelected());
