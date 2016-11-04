@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane maxHeight="640.0" maxWidth="640.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sst.bank.controllers.EditBeneficiaryController">
+	<columnConstraints>
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="1.0" prefWidth="100.0" />
+		<ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" percentWidth="35.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="1.0" prefWidth="100.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="43.0" prefWidth="100.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+	</columnConstraints>
+	<rowConstraints>
+		<RowConstraints percentHeight="1.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="8.0" />
+		<RowConstraints percentHeight="11.0" />
+	</rowConstraints>
+	<children>
+		<Label contentDisplay="RIGHT" prefHeight="153.0" prefWidth="224.0" text="Id" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+		<Label contentDisplay="RIGHT" prefHeight="153.0" prefWidth="224.0" text="Name" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+		<Label contentDisplay="RIGHT" prefHeight="153.0" prefWidth="224.0" text="Counterparties" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+		<Label contentDisplay="RIGHT" prefHeight="153.0" prefWidth="224.0" text="Details" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextField fx:id="idTextField" maxWidth="-Infinity" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <TextField fx:id="nameTextField" maxWidth="-Infinity" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <ListView fx:id="counterpartiesListView" maxWidth="-Infinity" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <ListView fx:id="detailsListView" maxWidth="-Infinity" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+		<AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6" GridPane.rowSpan="4">
+			<children>
+				<fx:include fx:id="operationsByBeneficiary" source="OperationsListView.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+			</children>
+		</AnchorPane>
+      <Button fx:id="okButton" mnemonicParsing="false" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+      <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+	</children>
+</GridPane>

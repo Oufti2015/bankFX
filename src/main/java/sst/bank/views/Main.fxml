@@ -24,6 +24,11 @@
 						<fx:include fx:id="categoriesTab" source="CategoryView.fxml" />
 					</content>
 				</Tab>
+				<Tab text="Beneficiaries">
+					<content>
+						<fx:include fx:id="beneficiariesTab" source="BeneficiaryView.fxml" />
+					</content>
+				</Tab>
         </tabs>
       </TabPane>
    </children>
