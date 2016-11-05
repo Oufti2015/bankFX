@@ -13,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import lombok.extern.log4j.Log4j;
+import sst.bank.OuftiBankFX;
+import sst.bank.events.BeneficiaryChangeEvent;
 import sst.bank.model.BankSummary;
 import sst.bank.model.Beneficiary;
 import sst.bank.model.Operation;
@@ -52,8 +54,7 @@ public class EditBeneficiaryController {
 		beneficiary.setName(nameTextField.getText());
 		beneficiary.setId(idTextField.getText());
 
-		// EventBus eb = new EventBus();
-		// OuftiBankFX.eventBus.post(new CategoryChangeEvent(category));
+		OuftiBankFX.eventBus.post(new BeneficiaryChangeEvent(beneficiary));
 		setEditable(false);
 	    }
 	});

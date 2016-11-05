@@ -18,6 +18,7 @@ import lombok.extern.log4j.Log4j;
 import sst.bank.activities.LifeCycleInterface;
 import sst.bank.config.BankConfiguration;
 import sst.bank.controllers.MainController;
+import sst.bank.events.BeneficiaryChangeEvent;
 import sst.bank.events.CategoryChangeEvent;
 
 @Log4j
@@ -100,6 +101,13 @@ public class OuftiBankFX extends Application {
     public void handleEvent(CategoryChangeEvent e) {
 	log.info("" + e.getCategory() + " has changed.");
 	LifeCycleInterface.saveCategories();
+	// LifeCycleInterface.runCompleteLifeCyle();
+    }
+
+    @Subscribe
+    public void handleEvent(BeneficiaryChangeEvent e) {
+	log.info("" + e.getBeneficiary() + " has changed.");
+	LifeCycleInterface.saveBeneficiaries();
 	// LifeCycleInterface.runCompleteLifeCyle();
     }
 

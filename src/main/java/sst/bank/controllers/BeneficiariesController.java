@@ -15,7 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import lombok.extern.log4j.Log4j;
 import sst.bank.OuftiBankFX;
-import sst.bank.events.CategoryChangeEvent;
+import sst.bank.events.BeneficiaryChangeEvent;
 import sst.bank.model.Beneficiary;
 import sst.bank.model.container.BankContainer;
 
@@ -53,7 +53,7 @@ public class BeneficiariesController {
     }
 
     @Subscribe
-    public void handleEvent(CategoryChangeEvent e) {
+    public void handleEvent(BeneficiaryChangeEvent e) {
 	ObservableList<Beneficiary> categories = FXCollections.observableArrayList();
 	for (Beneficiary category : BankContainer.me().beneficiaries()
 		.stream()
