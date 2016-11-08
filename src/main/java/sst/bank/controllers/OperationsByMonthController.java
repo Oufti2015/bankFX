@@ -12,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import jfxtras.scene.control.gauge.linear.BasicRoundDailGauge;
+import jfxtras.scene.control.gauge.linear.elements.PercentSegment;
+import jfxtras.scene.control.gauge.linear.elements.Segment;
 import lombok.extern.log4j.Log4j;
 import sst.bank.OuftiBankFX;
 import sst.bank.controllers.utils.DescendingBankSummaryComparator;
@@ -36,6 +38,8 @@ public class OperationsByMonthController {
     private TotalController totalController;
     @FXML
     private AnchorPane tachiAnchorPane;
+
+    private BasicRoundDailGauge roundDailGauge = new BasicRoundDailGauge();
 
     @FXML
     private void initialize() {
@@ -71,11 +75,28 @@ public class OperationsByMonthController {
 			.mapToDouble(c -> c.getBudget().getControlledAmount().doubleValue())
 			.sum();
 		totalController.setBudget(budget);
-		totalController.setResult(total - budget);
+		double result = total - budget;
+		totalController.setResult(result);
 		totalController.setCreationDate(BankContainer.me().getCreationDate());
+
+		double maxValue = BankContainer.me().getCategories()
+			.stream()
+			.mapToDouble(c -> c.getBudget().getControlledAmount().doubleValue())
+			.filter(d -> d > 0.0)
+			.sum();
+		roundDailGauge.setMaxValue(maxValue);
+		roundDailGauge.setValue(result >= 0.0 ? (result > maxValue ? maxValue : result) : 0.0);
+
+		// roundDailGauge.markers().add(new
+		// PercentMarker(roundDailGauge, 10));
 	    }
 	});
-	tachiAnchorPane.getChildren().add(new BasicRoundDailGauge());
+	roundDailGauge.getStyleClass().add("colorscheme-red-to-blue-5");
+	for (int i = 0; i < 5; i++) {
+	    Segment lSegment = new PercentSegment(roundDailGauge, i * 20.0, (i + 1) * 20.0);
+	    roundDailGauge.segments().add(lSegment);
+	}
+	tachiAnchorPane.getChildren().add(roundDailGauge);
     }
 
     public void setTitle(String title) {

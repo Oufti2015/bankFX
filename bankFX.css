@@ -193,3 +193,22 @@
     -fx-background-color: white;
     -fx-text-fill: #1d1d1d;
 }
+.colorscheme-purple-to-cyan-10 {
+    -fxx-segment0-color: #5b27c8;
+    -fxx-segment1-color: #9622b6;
+    -fxx-segment2-color: #cc1760;
+    -fxx-segment3-color: #c7151a;
+    -fxx-segment4-color: #f37e23;
+    -fxx-segment5-color: #f6c52d;
+    -fxx-segment6-color: #bdd62d;
+    -fxx-segment7-color: #5bcc28;
+    -fxx-segment8-color: #25cf90;
+    -fxx-segment9-color: #22b4c5;
+}
+.colorscheme-red-to-blue-5 {
+    -fxx-segment0-color: #ff312a;
+    -fxx-segment1-color: #ffd82a;
+    -fxx-segment2-color: #29fa3d;
+    -fxx-segment3-color: #29c0fa;
+    -fxx-segment4-color: #2976fa;
+}
