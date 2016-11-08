@@ -10,6 +10,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
+import jfxtras.scene.control.gauge.linear.BasicRoundDailGauge;
 import lombok.extern.log4j.Log4j;
 import sst.bank.OuftiBankFX;
 import sst.bank.controllers.utils.DescendingBankSummaryComparator;
@@ -32,6 +34,8 @@ public class OperationsByMonthController {
     private SummaryListController summaryListController;
     @FXML
     private TotalController totalController;
+    @FXML
+    private AnchorPane tachiAnchorPane;
 
     @FXML
     private void initialize() {
@@ -71,6 +75,7 @@ public class OperationsByMonthController {
 		totalController.setCreationDate(BankContainer.me().getCreationDate());
 	    }
 	});
+	tachiAnchorPane.getChildren().add(new BasicRoundDailGauge());
     }
 
     public void setTitle(String title) {

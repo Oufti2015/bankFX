@@ -27,6 +27,12 @@
 			<artifactId>guava</artifactId>
 			<version>20.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jfxtras/jfxtras-gauge-linear -->
+		<dependency>
+			<groupId>org.jfxtras</groupId>
+			<artifactId>jfxtras-gauge-linear</artifactId>
+			<version>8.0-r5</version>
+		</dependency>
 	</dependencies>
 
 	<build>
