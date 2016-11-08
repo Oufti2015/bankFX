@@ -18,6 +18,7 @@ import sst.bank.controllers.utils.DoubleStringConverter;
 import sst.bank.model.BankSummary;
 import sst.bank.model.Category;
 import sst.bank.model.SummaryModel;
+import sst.bank.model.container.BankContainer;
 
 @Log4j
 public class SummaryListController {
@@ -60,11 +61,16 @@ public class SummaryListController {
 	List<SummaryModel> list = new ArrayList<>();
 	for (Category cat : newValue.getSummary().keySet()
 		.stream()
+		.map(c -> BankContainer.me().category(c.getName()))
 		.sorted(new CategoryComparator())
 		.collect(Collectors.toList())) {
 	    SummaryModel e = new SummaryModel(cat, newValue.getSummary().get(cat).doubleValue());
 	    list.add(e);
 	    log.debug("" + cat + " : " + e + " " + e.getBudget());
+	}
+	for (Category cat2 : newValue.getSummary().keySet()) {
+	    Category cat3 = BankContainer.me().category(cat2.getName());
+	    log.debug(" ----> " + cat2.getBudget() + " --- " + cat3.getBudget());
 	}
 
 	budgetTableView.getItems().setAll(list);
