@@ -2,6 +2,7 @@ package sst.bank.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import sst.bank.config.BankConfiguration;
 
 public class TotalController {
     @FXML
@@ -35,15 +36,15 @@ public class TotalController {
     }
 
     public void setTotal(Double amount) {
-	totalOperationsLabel.setText(String.format("%.2f €", amount));
+	totalOperationsLabel.setText(String.format("%.2f ", amount) + BankConfiguration.EURO_CHAR);
     }
 
     public void setBudget(Double amount) {
-	totalBudgetLabel.setText(String.format("%.2f €", amount));
+	totalBudgetLabel.setText(String.format("%.2f ", amount) + BankConfiguration.EURO_CHAR);
     }
 
     public void setResult(Double amount) {
-	resultLabel.setText(String.format("%.2f €", amount));
+	resultLabel.setText(String.format("%.2f ", amount) + BankConfiguration.EURO_CHAR);
     }
 
     public void setCreationDate(String date) {

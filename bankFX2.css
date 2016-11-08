@@ -1,27 +1,43 @@
+.root{
+	-fx-focus-color: grey;
+	-fx-background-color: black;
+    -fx-font-size: 11.0pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+ /*    -fx-opacity: 0.6;*/
+}
+/*
 .background {
     -fx-background-color: #1d1d1d;
-}
+} 
 
+.check-box {
+    -fx-font-size: 11.0pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.6;
+}
+*/
 .label {
-    -fx-font-size: 11pt;
+    -fx-font-size: 11.0pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
     -fx-opacity: 0.6;
 }
 
 .label-bright {
-    -fx-font-size: 11pt;
+    -fx-font-size: 11.0pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
-    -fx-opacity: 1;
+    -fx-opacity: 1.0;
 }
-
+/*
 .label-header {
-    -fx-font-size: 32pt;
+    -fx-font-size: 32.0pt;
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-opacity: 1;
-}
+    -fx-text-fill: yellow;
+    -fx-opacity: 1.0;
+}*/
 
 .table-view {
     -fx-base: #1d1d1d;
@@ -29,7 +45,7 @@
     -fx-background-color: #1d1d1d;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
-    -fx-padding: 5;
+    -fx-padding: 5.0;
 }
 
 .table-view .column-header-background {
@@ -37,23 +53,23 @@
 }
 
 .table-view .column-header, .table-view .filler {
-    -fx-size: 35;
-    -fx-border-width: 0 0 1 0;
+    -fx-size: 35.0;
+    -fx-border-width: 0.0 0.0 1.0 0.0;
     -fx-background-color: transparent;
     -fx-border-color: 
         transparent
         transparent
-        derive(-fx-base, 80%) 
+        derive(-fx-base, 80.0%) 
         transparent;
-    -fx-border-insets: 0 10 1 0;
+    -fx-border-insets: 0.0 10.0 1.0 0.0;
 }
 
 .table-view .column-header .label {
-    -fx-font-size: 10pt;
+    -fx-font-size: 12.0pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-alignment: center-left;
-    -fx-opacity: 1;
+    -fx-opacity: 1.0;
 }
 
 .table-view:focused .table-row-cell:filled:focused:selected {
@@ -66,7 +82,7 @@
     -fx-background-color: #1d1d1d;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
-    -fx-padding: 5;
+    -fx-padding: 5.0;
 }
 
 .list-view .column-header-background {
@@ -74,23 +90,23 @@
 }
 
 .list-view .column-header, .list-view .filler {
-    -fx-size: 35;
-    -fx-border-width: 0 0 1 0;
+    -fx-size: 35.0;
+    -fx-border-width: 0.0 0.0 1.0 0.0;
     -fx-background-color: transparent;
     -fx-border-color: 
         transparent
         transparent
-        derive(-fx-base, 80%) 
+        derive(-fx-base, 80.0%) 
         transparent;
-    -fx-border-insets: 0 10 1 0;
+    -fx-border-insets: 0.0 10.0 1.0 0.0;
 }
 
 .list-view .column-header .label {
-    -fx-font-size: 20pt;
+    -fx-font-size: 20.0pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-alignment: center-left;
-    -fx-opacity: 1;
+    -fx-opacity: 1.0;
 }
 
 .list-view:focused .table-row-cell:filled:focused:selected {
@@ -99,23 +115,23 @@
 
 .split-pane:horizontal > .split-pane-divider {
     -fx-border-color: transparent #1d1d1d transparent #1d1d1d;
-    -fx-background-color: transparent, derive(#1d1d1d,20%);
+    -fx-background-color: transparent, derive(#1d1d1d,20.0%);
 }
 
 .split-pane {
-    -fx-padding: 1 0 0 0;
+    -fx-padding: 1.0 0.0 0.0 0.0;
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d,20%);
+    -fx-background-color: derive(#1d1d1d,20.0%);
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d,50%);
+    -fx-background-color: derive(#1d1d1d,50.0%);
 }
 
 .menu-bar .label {
-    -fx-font-size: 14pt;
+    -fx-font-size: 14.0pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
@@ -126,29 +142,20 @@
 }
 
 .text-field {
-    -fx-font-size: 12pt;
+    -fx-font-size: 12.0pt;
     -fx-font-family: "Segoe UI Semibold";
 }
 
-/* 
- * Metro style Push Button
- * Author: Pedro Duque Vieira
- * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
- */
-.root{
-    -fx-background-color: #262626;
-}
-
 .button {
-    -fx-padding: 5 22 5 22;   
+    -fx-padding: 5.0 22.0 5.0 22.0;   
     -fx-border-color: #e2e2e2;
-    -fx-border-width: 2;
-    -fx-background-radius: 0;
+    -fx-border-width: 2.0;
+    -fx-background-radius: 0.0;
     -fx-background-color: #1d1d1d;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 11pt;
+    -fx-font-size: 11.0pt;
     -fx-text-fill: #d8d8d8;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-background-insets: 0.0 0.0 0.0 0.0, 0.0, 1.0, 2.0;
 }
 
 .button:hover {
@@ -162,10 +169,10 @@
 
 .button:focused {
     -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
+    -fx-border-width: 1.0, 1.0;
+    -fx-border-style: solid, segments(1.0, 1.0);
+    -fx-border-radius: 0.0, 0.0;
+    -fx-border-insets: 1.0 1.0 1.0 1.0, 0.0;
 }
 
 .button:disabled, .button:default:disabled {
@@ -176,9 +183,59 @@
 
 .button:default {
     -fx-background-color: -fx-focus-color;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: white;
 }
 
 .button:default:hover {
-    -fx-background-color: derive(-fx-focus-color,30%);
+    -fx-background-color: derive(-fx-focus-color,30.0%);
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+    -fx-font-size: 12.0px;
+    -fx-font-weight: bold;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0.0;
+}
+
+.tab-pane
+{
+    -fx-tab-min-width:90.0px;
+}
+
+.tab{
+    -fx-background-insets: 0.0 1.0 0.0 1.0,0.0,0.0;
+}
+.tab-pane .tab
+{
+    -fx-background-color: Grey;
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: #1d1d1d;
+}
+
+.tab:selected .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #96b946;
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: -fx-focus-color;
+    -fx-text-fill: white; 
+}
+
+.list-cell { 
+    -fx-background-color: #1d1d1d;
+	-fx-text-fill: white;
+	-fx-font-size: 14.0px;
+}
+
+.list-cell:filled:hover { 
+    -fx-background-color: white;
+    -fx-text-fill: #1d1d1d;
 }

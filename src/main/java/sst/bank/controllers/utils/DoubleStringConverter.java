@@ -3,6 +3,7 @@ package sst.bank.controllers.utils;
 import java.text.NumberFormat;
 
 import javafx.util.StringConverter;
+import sst.bank.config.BankConfiguration;
 
 public class DoubleStringConverter extends StringConverter<Double> {
 
@@ -15,7 +16,7 @@ public class DoubleStringConverter extends StringConverter<Double> {
 
     @Override
     public String toString(Double value) {
-	return nf.format(value) + " €";
+	return nf.format(value) + " " + BankConfiguration.EURO_CHAR;
     }
 
     @Override
