@@ -85,6 +85,9 @@ public class OperationsByMonthController {
 			.filter(d -> d > 0.0)
 			.sum();
 		roundDailGauge.setMaxValue(maxValue);
+		if (result < 0) {
+		    result = maxValue + total;
+		}
 		roundDailGauge.setValue(result >= 0.0 ? (result > maxValue ? maxValue : result) : 0.0);
 
 		// roundDailGauge.markers().add(new
