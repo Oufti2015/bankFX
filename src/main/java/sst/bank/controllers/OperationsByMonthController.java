@@ -10,12 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.AnchorPane;
-import jfxtras.scene.control.gauge.linear.BasicRoundDailGauge;
-import jfxtras.scene.control.gauge.linear.elements.PercentSegment;
-import jfxtras.scene.control.gauge.linear.elements.Segment;
 import lombok.extern.log4j.Log4j;
-import sst.bank.OuftiBankFX;
 import sst.bank.controllers.utils.DescendingBankSummaryComparator;
 import sst.bank.model.BankSummary;
 import sst.bank.model.container.BankContainer;
@@ -33,24 +28,13 @@ public class OperationsByMonthController {
     @FXML
     private OperationsListController operationsByMonthController;
     @FXML
-    private SummaryListController summaryListController;
-    @FXML
     private TotalController totalController;
     @FXML
-    private AnchorPane tachiAnchorPane;
-
-    private BasicRoundDailGauge roundDailGauge = new BasicRoundDailGauge();
+    private SummaryPaneController summaryPaneController;
 
     @FXML
     private void initialize() {
 	log.info("initialize...");
-
-	log.debug("aController " + summaryListController);
-
-	if (summaryListController == null) {
-	    log.fatal("aController is not initialised...");
-	    OuftiBankFX.eventBus.post(new Exception("Controller not injected..."));
-	}
 
 	listViewByMonth.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<BankSummary>() {
 
@@ -61,7 +45,7 @@ public class OperationsByMonthController {
 		log.debug("Selected item: " + newValue);
 		operationsByMonthController.setData(newValue);
 		fromLabel.setText("From " + newValue.getStartDate() + " to " + newValue.getEndDate());
-		summaryListController.setData(newValue);
+		summaryPaneController.setData(newValue);
 
 		totalController.setOperations(BankContainer.me().operations().size());
 		totalController.setOperationsMonth(newValue.operationsCount());
@@ -79,27 +63,10 @@ public class OperationsByMonthController {
 		totalController.setResult(result);
 		totalController.setCreationDate(BankContainer.me().getCreationDate());
 
-		double maxValue = BankContainer.me().getCategories()
-			.stream()
-			.mapToDouble(c -> c.getBudget().getControlledAmount().doubleValue())
-			.filter(d -> d > 0.0)
-			.sum();
-		roundDailGauge.setMaxValue(maxValue);
-		if (result < 0) {
-		    result = maxValue + total;
-		}
-		roundDailGauge.setValue(result >= 0.0 ? (result > maxValue ? maxValue : result) : 0.0);
-
 		// roundDailGauge.markers().add(new
 		// PercentMarker(roundDailGauge, 10));
 	    }
 	});
-	roundDailGauge.getStyleClass().add("colorscheme-red-to-blue-5");
-	for (int i = 0; i < 5; i++) {
-	    Segment lSegment = new PercentSegment(roundDailGauge, i * 20.0, (i + 1) * 20.0);
-	    roundDailGauge.segments().add(lSegment);
-	}
-	tachiAnchorPane.getChildren().add(roundDailGauge);
     }
 
     public void setTitle(String title) {

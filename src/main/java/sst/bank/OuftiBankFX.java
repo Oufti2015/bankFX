@@ -56,7 +56,7 @@ public class OuftiBankFX extends Application {
 	// init(grid);
 
 	initRootLayout();
-	// primaryStage.setMaximized(true);
+	primaryStage.setMaximized(true);
 	// primaryStage.setFullScreen(true);
 	Scene scene = primaryStage.getScene();
 	File f = new File("bankFX.css");

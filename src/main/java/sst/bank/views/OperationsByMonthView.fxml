@@ -20,9 +20,9 @@
 		<RowConstraints minHeight="30.72" percentHeight="4.0" prefHeight="30.72" />
 		<RowConstraints minHeight="30.72" percentHeight="4.0" prefHeight="30.72" />
 		<RowConstraints minHeight="337.92" percentHeight="44.0" prefHeight="337.92" />
-		<RowConstraints minHeight="30.72" percentHeight="4.0" prefHeight="30.72"  />
+		<RowConstraints minHeight="30.72" percentHeight="4.0" prefHeight="30.72" />
 		<RowConstraints minHeight="253.44" percentHeight="33.0" prefHeight="253.44" />
-		<RowConstraints minHeight="76.8" percentHeight="10.0" prefHeight="76.8"  />
+		<RowConstraints minHeight="76.8" percentHeight="10.0" prefHeight="76.8" />
 	</rowConstraints>
 	<children>
 		<Label fx:id="byLabel" text="By" GridPane.columnIndex="3" GridPane.rowIndex="1">
@@ -45,16 +45,11 @@
 				<Font size="24.0" />
 			</font>
 		</Label>
-		<HBox  GridPane.columnIndex="3" GridPane.rowIndex="5">
+		<AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
 			<children>
-				<AnchorPane prefHeight="200.0" prefWidth="500.0">
-					<children>
-						<fx:include fx:id="summaryList" source="SummaryListView.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-					</children>
-				</AnchorPane>
-				<AnchorPane fx:id="tachiAnchorPane" prefHeight="200.0" prefWidth="200.0" />
+				<fx:include fx:id="summaryPane" source="SummaryPaneView.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
 			</children>
-		</HBox>
+		</AnchorPane>
 		<ListView fx:id="listViewByMonth" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3" />
 		<AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
 			<children>
