@@ -3,9 +3,15 @@ package sst.bank.controllers;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 
+import javafx.beans.binding.Bindings;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -53,6 +59,32 @@ public class OperationsListController {
 	formatDoubleColumn(amountColumn);
 	formatLocalDateColumn(executionDateColumn);
 	formatLocalDateColumn(valueDateColumn);
+
+	tableView.setRowFactory(
+		new Callback<TableView<OperationModel>, TableRow<OperationModel>>() {
+		    @Override
+		    public TableRow<OperationModel> call(TableView<OperationModel> tableView) {
+			final TableRow<OperationModel> row = new TableRow<>();
+			final ContextMenu rowMenu = new ContextMenu();
+			MenuItem editItem = new MenuItem("Set Category...");
+			// editItem.setOnAction(...);
+			// MenuItem removeItem = new MenuItem("Delete");
+			editItem.setOnAction(new EventHandler<ActionEvent>() {
+			    @Override
+			    public void handle(ActionEvent event) {
+
+			    }
+			});
+			rowMenu.getItems().addAll(editItem);
+
+			// only display context menu for non-null items:
+			row.contextMenuProperty().bind(
+				Bindings.when(Bindings.isNotNull(row.itemProperty()))
+					.then(rowMenu)
+					.otherwise((ContextMenu) null));
+			return row;
+		    }
+		});
     }
 
     private static Callback<TableColumn<OperationModel, Double>, TableCell<OperationModel, Double>> forTableColumn = TextFieldTableCell
