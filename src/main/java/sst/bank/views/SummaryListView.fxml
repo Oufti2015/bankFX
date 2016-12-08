@@ -8,13 +8,13 @@
 	<center>
 		<TableView fx:id="budgetTableView" layoutX="0.0" layoutY="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<columns>
-				<TableColumn fx:id="sumCategoryColumn" prefWidth="117.0"
+				<TableColumn fx:id="sumCategoryColumn" prefWidth="150.0"
 					text="Category" />
-				<TableColumn fx:id="sumAmountColumn" prefWidth="82.0"
+				<TableColumn fx:id="sumAmountColumn" prefWidth="90.0"
 					text="Amount" />
-				<TableColumn fx:id="sumBudgetColumn" prefWidth="92.0"
+				<TableColumn fx:id="sumBudgetColumn" prefWidth="90.0"
 					text="Budget" />
-				<TableColumn fx:id="sumDiffColumn" prefWidth="83.0"
+				<TableColumn fx:id="sumDiffColumn" prefWidth="90.0"
 					text="Differ." />
 			</columns>
 		</TableView>

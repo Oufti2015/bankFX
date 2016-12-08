@@ -51,10 +51,6 @@ public class OuftiBankFX extends Application {
 	this.primaryStage = primaryStage;
 	primaryStage.setTitle("Oufti Bank");
 
-	// scene.getStylesheets().add(OuftiBankFX.class.getResource("sigillo.css").toExternalForm());
-
-	// init(grid);
-
 	initRootLayout();
 	primaryStage.setMaximized(true);
 	// primaryStage.setFullScreen(true);

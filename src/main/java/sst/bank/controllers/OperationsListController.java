@@ -50,14 +50,15 @@ public class OperationsListController {
 	log.info("initialize...");
 	idColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, String>("fortisId"));
 	categoryColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, String>("category"));
-	executionDateColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, LocalDate>("executionDate"));
+	// executionDateColumn.setCellValueFactory(new
+	// PropertyValueFactory<OperationModel, LocalDate>("executionDate"));
 	valueDateColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, LocalDate>("valueDate"));
 	amountColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, Double>("amount"));
 	counterpartyColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, String>("counterparty"));
 	detailsColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, String>("detail"));
 
 	formatDoubleColumn(amountColumn);
-	formatLocalDateColumn(executionDateColumn);
+	// formatLocalDateColumn(executionDateColumn);
 	formatLocalDateColumn(valueDateColumn);
 
 	tableView.setRowFactory(
