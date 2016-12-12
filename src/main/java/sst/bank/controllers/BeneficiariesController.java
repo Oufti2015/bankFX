@@ -28,7 +28,8 @@ public class BeneficiariesController {
 
     @FXML
     private void initialize() {
-	log.info("initialize...");
+	log.debug("initialize...");
+
 	OuftiBankFX.eventBus.register(this);
 
 	Assert.assertNotNull(beneficiariesListView);

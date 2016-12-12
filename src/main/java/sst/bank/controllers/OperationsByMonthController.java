@@ -34,7 +34,7 @@ public class OperationsByMonthController {
 
     @FXML
     private void initialize() {
-	log.info("initialize...");
+	log.debug("initialize...");
 
 	listViewByMonth.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<BankSummary>() {
 

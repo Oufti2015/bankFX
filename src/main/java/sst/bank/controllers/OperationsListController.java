@@ -47,7 +47,8 @@ public class OperationsListController {
      */
     @FXML
     private void initialize() {
-	log.info("initialize...");
+	log.debug("initialize...");
+
 	idColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, String>("fortisId"));
 	categoryColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, String>("category"));
 	// executionDateColumn.setCellValueFactory(new

@@ -39,7 +39,7 @@ public class SummaryListController {
      */
     @FXML
     private void initialize() {
-	log.info("initialize...");
+	log.debug("initialize...");
 	if (budgetTableView == null) {
 	    log.fatal("budgetTableView is not initialised...");
 	    OuftiBankFX.eventBus.post(new Exception("Controller not injected"));

@@ -29,7 +29,7 @@ public class OperationsByCategoryController {
 
     @FXML
     private void initialize() {
-	log.info("initialize...");
+	log.debug("initialize...");
     }
 
     public void setTitle(String title) {

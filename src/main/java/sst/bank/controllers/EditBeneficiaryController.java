@@ -40,7 +40,7 @@ public class EditBeneficiaryController {
 
     @FXML
     private void initialize() {
-	log.info("initialize...");
+	log.debug("initialize...");
 	Assert.assertNotNull(nameTextField);
 	Assert.assertNotNull(okButton);
 	Assert.assertNotNull(cancelButton);

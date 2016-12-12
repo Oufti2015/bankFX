@@ -2,8 +2,10 @@ package sst.bank.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import lombok.extern.log4j.Log4j;
 import sst.bank.config.BankConfiguration;
 
+@Log4j
 public class TotalController {
     @FXML
     private Label operationsLabel;
@@ -20,6 +22,8 @@ public class TotalController {
 
     @FXML
     public void initialize() {
+	log.debug("initialize...");
+
 	operationsLabel.setStyle("-fx-alignment: CENTER-RIGHT;");
 	operationsMonthLabel.setStyle("-fx-alignment: CENTER-RIGHT;");
 	totalOperationsLabel.setStyle("-fx-alignment: CENTER-RIGHT;");

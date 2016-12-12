@@ -19,7 +19,7 @@ public class MainController {
 
     public MainController() {
 	super();
-	log.info("OuftiBankController...");
+	log.debug("OuftiBankController...");
     }
 
     /**
@@ -28,7 +28,7 @@ public class MainController {
      */
     @FXML
     private void initialize() {
-	log.info("initialize...");
+	log.debug("initialize...");
 	log.debug("byMonthTabController = " + byMonthTabController);
 	log.debug("byCategoryController = " + byCategoryTabController);
 

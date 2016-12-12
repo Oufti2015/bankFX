@@ -21,7 +21,7 @@ public class SummaryPaneController {
 
     @FXML
     private void initialize() {
-	log.info("initialize...");
+	log.debug("initialize...");
 
 	log.debug("aController " + summaryListController);
 
