@@ -9,6 +9,8 @@ import sst.bank.model.container.BankContainer;
 public class MainController {
     OuftiBankFX owner = null;
     @FXML
+    private OperationsByYearController byYearTabController;
+    @FXML
     private OperationsByMonthController byMonthTabController;
     @FXML
     private OperationsByCategoryController byCategoryTabController;
@@ -29,11 +31,13 @@ public class MainController {
     @FXML
     private void initialize() {
 	log.debug("initialize...");
+	log.debug("byYearTabController  = " + byYearTabController);
 	log.debug("byMonthTabController = " + byMonthTabController);
 	log.debug("byCategoryController = " + byCategoryTabController);
 
 	byMonthTabController.setTitle("By Month");
 	byCategoryTabController.setTitle("By Category");
+	byYearTabController.setListViewData(BankContainer.me().operationsByYear());
 	byMonthTabController.setListViewData(BankContainer.me().operationsByMonth());
 	byCategoryTabController.setTreeViewData(BankContainer.me().getCategories());
     }

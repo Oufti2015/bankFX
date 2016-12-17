@@ -9,27 +9,22 @@
    <children>
       <TabPane layoutX="14.0" layoutY="14.0" prefHeight="768.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-				<Tab fx:id="byYearTab" text="Opérations par Années">
-					<content>
-						<fx:include fx:id="byYearTab" source="OperationsByYearView.fxml" />
-					</content>
-				</Tab>
-				<Tab fx:id="byMonthTab" text="Opérations par Mois">
+				<Tab fx:id="byMonthTab" text="By Month">
 					<content>
 						<fx:include fx:id="byMonthTab" source="OperationsByMonthView.fxml" />
 					</content>
 				</Tab>
-				<Tab text="Opérations par Catégories">
+				<Tab text="By Category">
 					<content>
 						<fx:include fx:id="byCategoryTab" source="OperationsByCategoryView.fxml" />
 					</content>
 				</Tab>
-				<Tab text="Catégories">
+				<Tab text="Categories">
 					<content>
 						<fx:include fx:id="categoriesTab" source="CategoryView.fxml" />
 					</content>
 				</Tab>
-				<Tab text="Bénéficiaires">
+				<Tab text="Beneficiaries">
 					<content>
 						<fx:include fx:id="beneficiariesTab" source="BeneficiaryView.fxml" />
 					</content>

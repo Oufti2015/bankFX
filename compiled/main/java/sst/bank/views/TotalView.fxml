@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane prefHeight="240.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sst.bank.controllers.TotalController">
+   <columnConstraints>
+      <ColumnConstraints percentWidth="3.0" />
+      <ColumnConstraints percentWidth="56.0" />
+      <ColumnConstraints percentWidth="38.0" />
+      <ColumnConstraints percentWidth="3.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints percentHeight="20.0" />
+      <RowConstraints percentHeight="10.0" />
+      <RowConstraints percentHeight="10.0" />
+      <RowConstraints percentHeight="10.0" />
+      <RowConstraints percentHeight="10.0" />
+      <RowConstraints percentHeight="10.0" />
+      <RowConstraints percentHeight="10.0" />
+      <RowConstraints percentHeight="20.0" />
+   </rowConstraints>
+   <children>
+      <Label text="Nombre d'opérations" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label fx:id="operationsLabel" minHeight="-Infinity" prefWidth="80.0" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Label text="Nombre d'op. mois" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label fx:id="operationsMonthLabel" minHeight="-Infinity" prefWidth="80.0" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <Label text="Total des Opérations" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label fx:id="totalOperationsLabel" minHeight="-Infinity" prefWidth="80.0" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <Label text="Total du budget" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Label fx:id="totalBudgetLabel" minHeight="-Infinity" prefWidth="80.0" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      <Label text="Résultat" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Label fx:id="resultLabel" minHeight="-Infinity" prefWidth="80.0" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      <Label text="Date de Traitement" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Label fx:id="creationDateLabel" minHeight="-Infinity" prefWidth="120.0" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+   </children>
+</GridPane>
