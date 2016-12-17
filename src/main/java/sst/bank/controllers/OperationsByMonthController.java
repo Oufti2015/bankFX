@@ -51,18 +51,25 @@ public class OperationsByMonthController {
 
 		totalController.setOperations(BankContainer.me().operations().size());
 		totalController.setOperationsMonth(newValue.operationsCount());
-		Double revenues = newValue.getSummary().values()
+
+		newValue.getList()
 			.stream()
-			.filter(s -> s.amount.compareTo(BigDecimal.ZERO) > 0)
-			.filter(s -> !s.category.getBudget().getBudgetType().equals(BudgetType.SAVING))
-			.mapToDouble(s -> s.amount.doubleValue())
+			.filter(o -> o.getAmount().compareTo(BigDecimal.ZERO) > 0)
+			.filter(o -> !o.getCategory().getBudget().getBudgetType().equals(BudgetType.SAVING))
+			.forEach(o -> System.out.println(newValue + "-" + o.getCategory() + " - " + o.getAmount()));
+
+		Double revenues = newValue.getList()
+			.stream()
+			.filter(o -> o.getAmount().compareTo(BigDecimal.ZERO) > 0)
+			.filter(o -> !o.getCategory().getBudget().getBudgetType().equals(BudgetType.SAVING))
+			.mapToDouble(o -> o.getAmount().doubleValue())
 			.sum();
 		totalController.setRevenues(revenues);
-		Double expenses = newValue.getSummary().values()
+		Double expenses = newValue.getList()
 			.stream()
-			.filter(s -> s.amount.compareTo(BigDecimal.ZERO) < 0)
-			.filter(s -> !s.category.getBudget().getBudgetType().equals(BudgetType.SAVING))
-			.mapToDouble(s -> s.amount.doubleValue())
+			.filter(o -> o.getAmount().compareTo(BigDecimal.ZERO) < 0)
+			.filter(o -> !o.getCategory().getBudget().getBudgetType().equals(BudgetType.SAVING))
+			.mapToDouble(o -> o.getAmount().doubleValue())
 			.sum();
 		totalController.setExpenses(expenses);
 		double result = revenues + expenses;
