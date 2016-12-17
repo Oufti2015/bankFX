@@ -1,5 +1,6 @@
 package sst.bank.controllers;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -13,6 +14,7 @@ import javafx.scene.control.ListView;
 import lombok.extern.log4j.Log4j;
 import sst.bank.controllers.utils.DescendingBankSummaryComparator;
 import sst.bank.model.BankSummary;
+import sst.bank.model.Budget.BudgetType;
 import sst.bank.model.container.BankContainer;
 
 @Log4j
@@ -49,17 +51,21 @@ public class OperationsByMonthController {
 
 		totalController.setOperations(BankContainer.me().operations().size());
 		totalController.setOperationsMonth(newValue.operationsCount());
-		Double total = newValue.getSummary().values()
+		Double revenues = newValue.getSummary().values()
 			.stream()
-			.mapToDouble(o -> o.doubleValue())
+			.filter(s -> s.amount.compareTo(BigDecimal.ZERO) > 0)
+			.filter(s -> !s.category.getBudget().getBudgetType().equals(BudgetType.SAVING))
+			.mapToDouble(s -> s.amount.doubleValue())
 			.sum();
-		totalController.setTotal(total);
-		Double budget = BankContainer.me().getCategories()
+		totalController.setRevenues(revenues);
+		Double expenses = newValue.getSummary().values()
 			.stream()
-			.mapToDouble(c -> c.getBudget().getControlledAmount().doubleValue())
+			.filter(s -> s.amount.compareTo(BigDecimal.ZERO) < 0)
+			.filter(s -> !s.category.getBudget().getBudgetType().equals(BudgetType.SAVING))
+			.mapToDouble(s -> s.amount.doubleValue())
 			.sum();
-		totalController.setBudget(budget);
-		double result = total - budget;
+		totalController.setExpenses(expenses);
+		double result = revenues + expenses;
 		totalController.setResult(result);
 		totalController.setCreationDate(BankContainer.me().getCreationDate());
 

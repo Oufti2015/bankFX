@@ -48,7 +48,7 @@ public class SummaryPaneController {
 		.sum();
 	Double total = bm.getSummary().values()
 		.stream()
-		.mapToDouble(o -> o.doubleValue())
+		.mapToDouble(o -> o.amount.doubleValue())
 		.sum();
 	Double budget = BankContainer.me().getCategories()
 		.stream()

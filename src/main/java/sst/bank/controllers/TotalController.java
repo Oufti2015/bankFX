@@ -12,9 +12,9 @@ public class TotalController {
     @FXML
     private Label operationsMonthLabel;
     @FXML
-    private Label totalOperationsLabel;
+    private Label totalRevenuesLabel;
     @FXML
-    private Label totalBudgetLabel;
+    private Label totalExpensesLabel;
     @FXML
     private Label resultLabel;
     @FXML
@@ -26,8 +26,8 @@ public class TotalController {
 
 	operationsLabel.setStyle("-fx-alignment: CENTER-RIGHT;");
 	operationsMonthLabel.setStyle("-fx-alignment: CENTER-RIGHT;");
-	totalOperationsLabel.setStyle("-fx-alignment: CENTER-RIGHT;");
-	totalBudgetLabel.setStyle("-fx-alignment: CENTER-RIGHT;");
+	totalRevenuesLabel.setStyle("-fx-alignment: CENTER-RIGHT;");
+	totalExpensesLabel.setStyle("-fx-alignment: CENTER-RIGHT;");
 	resultLabel.setStyle("-fx-alignment: CENTER-RIGHT;");
     }
 
@@ -39,12 +39,12 @@ public class TotalController {
 	operationsMonthLabel.setText("" + count);
     }
 
-    public void setTotal(Double amount) {
-	totalOperationsLabel.setText(new DoubleStringConverter().toString(amount));
+    public void setRevenues(Double amount) {
+	totalRevenuesLabel.setText(new DoubleStringConverter().toString(amount));
     }
 
-    public void setBudget(Double amount) {
-	totalBudgetLabel.setText(new DoubleStringConverter().toString(amount));
+    public void setExpenses(Double amount) {
+	totalExpensesLabel.setText(new DoubleStringConverter().toString(amount));
     }
 
     public void setResult(Double amount) {

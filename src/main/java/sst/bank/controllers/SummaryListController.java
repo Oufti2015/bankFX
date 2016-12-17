@@ -64,7 +64,7 @@ public class SummaryListController {
 		.map(c -> BankContainer.me().category(c.getName()))
 		.sorted(new CategoryComparator())
 		.collect(Collectors.toList())) {
-	    SummaryModel e = new SummaryModel(cat, newValue.getSummary().get(cat).doubleValue(),
+	    SummaryModel e = new SummaryModel(cat, newValue.getSummary().get(cat).amount.doubleValue(),
 		    newValue.monthQuantity());
 	    list.add(e);
 	    // log.debug("" + cat + " : " + e + " " + e.getBudget());
