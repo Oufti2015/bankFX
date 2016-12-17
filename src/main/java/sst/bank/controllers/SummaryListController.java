@@ -64,14 +64,16 @@ public class SummaryListController {
 		.map(c -> BankContainer.me().category(c.getName()))
 		.sorted(new CategoryComparator())
 		.collect(Collectors.toList())) {
-	    SummaryModel e = new SummaryModel(cat, newValue.getSummary().get(cat).doubleValue());
+	    SummaryModel e = new SummaryModel(cat, newValue.getSummary().get(cat).doubleValue(),
+		    newValue.monthQuantity());
 	    list.add(e);
-	    log.debug("" + cat + " : " + e + " " + e.getBudget());
+	    // log.debug("" + cat + " : " + e + " " + e.getBudget());
 	}
-	for (Category cat2 : newValue.getSummary().keySet()) {
-	    Category cat3 = BankContainer.me().category(cat2.getName());
-	    log.debug(" ----> " + cat2.getBudget() + " --- " + cat3.getBudget());
-	}
+	// for (Category cat2 : newValue.getSummary().keySet()) {
+	// Category cat3 = BankContainer.me().category(cat2.getName());
+	// //log.debug(" ----> " + cat2.getBudget() + " --- " +
+	// cat3.getBudget());
+	// }
 
 	budgetTableView.getItems().setAll(list);
 

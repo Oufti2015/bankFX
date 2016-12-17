@@ -13,11 +13,12 @@ public class SummaryModel {
     private DoubleProperty budget;
     private DoubleProperty diff;
 
-    public SummaryModel(Category category, double amount) {
+    public SummaryModel(Category category, double amount, int month) {
 
 	this.category = new SimpleStringProperty(category.getFxName());
 	this.amount = new SimpleDoubleProperty(amount);
-	BigDecimal budgetMonthlyControlledAmount = category.getBudget().monthlyControlledAmount();
+	BigDecimal budgetMonthlyControlledAmount = category.getBudget().monthlyControlledAmount()
+		.multiply(BigDecimal.valueOf(month));
 	this.budget = new SimpleDoubleProperty(budgetMonthlyControlledAmount.doubleValue());
 
 	BigDecimal subtractDiff = BigDecimal.valueOf(amount).subtract(budgetMonthlyControlledAmount);

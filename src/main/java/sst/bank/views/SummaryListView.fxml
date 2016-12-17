@@ -10,11 +10,11 @@
 			<columns>
 				<TableColumn fx:id="sumCategoryColumn" prefWidth="150.0"
 					text="Category" />
-				<TableColumn fx:id="sumAmountColumn" prefWidth="90.0"
+				<TableColumn fx:id="sumAmountColumn" prefWidth="180.0"
 					text="Amount" />
-				<TableColumn fx:id="sumBudgetColumn" prefWidth="90.0"
+				<TableColumn fx:id="sumBudgetColumn" prefWidth="180.0"
 					text="Budget" />
-				<TableColumn fx:id="sumDiffColumn" prefWidth="90.0"
+				<TableColumn fx:id="sumDiffColumn" prefWidth="180.0"
 					text="Differ." />
 			</columns>
 		</TableView>
