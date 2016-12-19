@@ -13,15 +13,17 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import lombok.extern.log4j.Log4j;
 import sst.bank.controllers.utils.CategoryComparator;
+import sst.bank.controllers.utils.DoubleStringConverter;
+import sst.bank.model.BankSummary;
 import sst.bank.model.Category;
 import sst.bank.model.container.BankContainer;
 
 @Log4j
 public class OperationsByCategoryController {
     @FXML
-    private Label byCatLabel;
+    private Label byLabel;
     @FXML
-    private Label fromCatLabel;
+    private Label fromLabel;
     @FXML
     private ListView<Category> categoriesListView;
     @FXML
@@ -30,10 +32,11 @@ public class OperationsByCategoryController {
     @FXML
     private void initialize() {
 	log.debug("initialize...");
+	fromLabel.setText("");
     }
 
     public void setTitle(String title) {
-	this.byCatLabel.setText(title);
+	this.byLabel.setText(title);
     }
 
     public void setTreeViewData(Collection<Category> list) {
@@ -53,7 +56,16 @@ public class OperationsByCategoryController {
 		    public void changed(ObservableValue<? extends Category> ov,
 					Category old_val, Category new_val) {
 			log.debug("" + old_val + "-" + new_val);
-			operationsByCategoryController.setData(BankContainer.me().getBankSummaryByCategory(new_val));
+			BankSummary bankSummaryByCategory = BankContainer.me().getBankSummaryByCategory(new_val);
+			double total = bankSummaryByCategory.getList()
+				.stream()
+				.mapToDouble(o -> o.getAmount().doubleValue())
+				.sum();
+			operationsByCategoryController.setData(bankSummaryByCategory);
+			String fromString = new_val.toString()
+				+ " : "
+				+ new DoubleStringConverter().toString(total);
+			fromLabel.setText(fromString);
 		    }
 		});
     }

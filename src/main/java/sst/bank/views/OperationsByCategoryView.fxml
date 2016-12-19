@@ -24,12 +24,12 @@
    </rowConstraints>
    <children>
       <ListView fx:id="categoriesListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3" />
-      <Label fx:id="byCatLabel" text="Operations by Category" GridPane.columnIndex="3" GridPane.rowIndex="1">
+      <Label fx:id="byLabel" text="Operations by Category" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="fromCatLabel" text="From" GridPane.columnIndex="3" GridPane.rowIndex="2">
+      <Label fx:id="fromLabel" text="From" GridPane.columnIndex="3" GridPane.rowIndex="2">
          <font>
             <Font size="24.0" />
          </font>

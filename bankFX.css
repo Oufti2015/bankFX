@@ -23,6 +23,20 @@
     -fx-opacity: 0.6;
 }
 
+#byLabel {
+    -fx-font-size: 22.0pt;
+    -fx-font-family: "Verdana";
+    -fx-text-fill: yellow;
+    -fx-opacity: 0.6;
+}
+
+#fromLabel {
+    -fx-font-size: 18.0pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: yellow;
+    -fx-opacity: 0.6;
+}
+
 .label-bright {
     -fx-font-size: 11.0pt;
     -fx-font-family: "Segoe UI Semibold";
