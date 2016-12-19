@@ -63,18 +63,20 @@ public class TotalController {
     public void updateData(BankSummary summary) {
 	this.setOperations(BankContainer.me().operations().size());
 	this.setOperationsMonth(summary.operationsCount());
-	Double revenues = summary.getSummary().values()
+
+	Double revenues = summary.getList()
 		.stream()
-		.filter(s -> s.amount.compareTo(BigDecimal.ZERO) > 0)
-		.filter(s -> !s.category.getBudget().getBudgetType().equals(BudgetType.SAVING))
-		.mapToDouble(s -> s.amount.doubleValue())
+		.filter(o -> o.getAmount().compareTo(BigDecimal.ZERO) > 0)
+		.filter(o -> !o.getCategory().getBudget().getBudgetType().equals(BudgetType.SAVING))
+		.mapToDouble(o -> o.getAmount().doubleValue())
 		.sum();
 	this.setRevenues(revenues);
-	Double expenses = summary.getSummary().values()
+
+	Double expenses = summary.getList()
 		.stream()
-		.filter(s -> s.amount.compareTo(BigDecimal.ZERO) < 0)
-		.filter(s -> !s.category.getBudget().getBudgetType().equals(BudgetType.SAVING))
-		.mapToDouble(s -> s.amount.doubleValue())
+		.filter(o -> o.getAmount().compareTo(BigDecimal.ZERO) < 0)
+		.filter(s -> !s.getCategory().getBudget().getBudgetType().equals(BudgetType.SAVING))
+		.mapToDouble(s -> s.getAmount().doubleValue())
 		.sum();
 	this.setExpenses(expenses);
 	double result = revenues + expenses;
