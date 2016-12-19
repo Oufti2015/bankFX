@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import lombok.extern.log4j.Log4j;
 import sst.bank.OuftiBankFX;
 import sst.bank.model.container.BankContainer;
+import sst.bank.utils.StringConstants;
 
 @Log4j
 public class MainController {
@@ -35,7 +36,7 @@ public class MainController {
 	log.debug("byMonthTabController = " + byMonthTabController);
 	log.debug("byCategoryController = " + byCategoryTabController);
 
-	byCategoryTabController.setTitle("Opérations groupées par catégorie");
+	byCategoryTabController.setTitle(StringConstants.BY_CATEGORY);
 	byYearTabController.setListViewData(BankContainer.me().operationsByYear());
 	byMonthTabController.setListViewData(BankContainer.me().operationsByMonth());
 	byCategoryTabController.setTreeViewData(BankContainer.me().getCategories());
