@@ -3,6 +3,6 @@ package sst.bank.controllers;
 public class OperationsByYearController extends OperationsController {
     @Override
     protected void setTitle() {
-	byLabel.setText("Opérations groupées par année");
+	byLabel.setText("OpÃ©rations groupÃ©es par annÃ©e");
     }
 }

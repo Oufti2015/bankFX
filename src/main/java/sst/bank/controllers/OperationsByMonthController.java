@@ -6,7 +6,7 @@ import sst.bank.model.BankSummary;
 public class OperationsByMonthController extends OperationsController {
     @Override
     protected void setTitle() {
-	byLabel.setText("Opérations groupées par mois");
+	byLabel.setText(new String("OpÃ©rations groupÃ©es par mois"));
     }
 
     @FXML
