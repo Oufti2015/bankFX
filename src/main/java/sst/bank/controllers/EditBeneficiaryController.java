@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import lombok.extern.log4j.Log4j;
@@ -37,13 +38,16 @@ public class EditBeneficiaryController {
     private Button okButton;
     @FXML
     private Button cancelButton;
+    @FXML
+    private Button mergeIntoButton;
+    @FXML
+    private ComboBox<Beneficiary> mergeIntoComboBox;
 
     @FXML
     private void initialize() {
 	log.debug("initialize...");
-	Assert.assertNotNull(nameTextField);
-	Assert.assertNotNull(okButton);
-	Assert.assertNotNull(cancelButton);
+	Assert.assertNotNull("mergeIntoButton is not initialized", mergeIntoButton);
+	Assert.assertNotNull("mergeIntoComboBox is not initialized", mergeIntoComboBox);
 
 	setEditable(false);
 
@@ -72,6 +76,8 @@ public class EditBeneficiaryController {
 	idTextField.setDisable(!b);
 	okButton.setDisable(!b);
 	cancelButton.setDisable(!b);
+	mergeIntoButton.setDisable(!b);
+	mergeIntoComboBox.setDisable(!b);
     }
 
     public void setData(Beneficiary beneficiary) {
@@ -99,5 +105,30 @@ public class EditBeneficiaryController {
 	}
 
 	operationsByBeneficiaryController.setData(new BankSummary(operations));
+
+	mergeIntoComboBox.getItems().setAll(BankContainer.me().beneficiaries()
+		.stream()
+		.sorted()
+		.collect(Collectors.toList()));
+    }
+
+    @FXML
+    public void mergeInto() {
+	System.out.println("Merge into...");
+	Beneficiary from = beneficiary;
+	Beneficiary into = mergeIntoComboBox.getSelectionModel().getSelectedItem();
+
+	System.out.println("Merge from " + from);
+	System.out.println("Merge into " + into);
+
+	if (into != null && from != null) {
+	    into.getCounterparties().addAll(from.getCounterparties());
+	    into.getDetails().addAll(from.getDetails());
+
+	    BankContainer.me().beneficiaries().remove(from);
+	    setEditable(false);
+	    OuftiBankFX.eventBus.post(new BeneficiaryChangeEvent(into));
+	    return;
+	}
     }
 }
