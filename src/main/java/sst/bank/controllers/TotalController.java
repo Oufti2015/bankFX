@@ -61,7 +61,7 @@ public class TotalController {
     }
 
     public void updateData(BankSummary summary) {
-	this.setOperations(BankContainer.me().operations().size());
+	this.setOperations(BankContainer.me().operationsContainer().operations().size());
 	this.setOperationsMonth(summary.operationsCount());
 
 	Double revenues = summary.getList()
@@ -81,6 +81,6 @@ public class TotalController {
 	this.setExpenses(expenses);
 	double result = revenues + expenses;
 	this.setResult(result);
-	this.setCreationDate(BankContainer.me().getCreationDate());
+	this.setCreationDate(BankContainer.me().creationDate());
     }
 }

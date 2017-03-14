@@ -56,9 +56,8 @@ public class OuftiBankFX extends Application {
 	// primaryStage.setFullScreen(true);
 	Scene scene = primaryStage.getScene();
 	File f = new File("bankFX.css");
-	// scene.getStylesheets().clear();
-	// scene.getStylesheets().add("file:///" +
-	// f.getAbsolutePath().replace("\\", "/"));
+	scene.getStylesheets().clear();
+	scene.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
 
 	InputStream resourceAsStream = OuftiBankFX.class.getResourceAsStream(ICON);
 	if (resourceAsStream != null) {

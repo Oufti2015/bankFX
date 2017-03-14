@@ -96,7 +96,7 @@ public class EditBeneficiaryController {
 	detailsListView.getItems().setAll(beneficiary.getDetails());
 
 	ObservableList<Operation> operations = FXCollections.observableArrayList();
-	for (Operation operation : BankContainer.me().operations()
+	for (Operation operation : BankContainer.me().operationsContainer().operations()
 		.stream()
 		.filter(o -> beneficiary.getCounterparties().contains(o.getCounterparty())
 			|| beneficiary.getDetails().contains(o.getCounterparty()))
