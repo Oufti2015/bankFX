@@ -45,7 +45,7 @@ public class OuftiBankFX extends Application {
 
 	// OuftiBankFX.eventBus.post(new Exception("Test"));
 
-	LifeCycleInterface.runReadOnlyLifeCyle();
+	LifeCycleInterface.runCompleteLifeCyle();
 
 	// set title
 	this.primaryStage = primaryStage;
