@@ -81,12 +81,18 @@ public class OperationsByCategoryController {
 				.stream()
 				.forEach(y -> {
 				    OperationsTableView olc = new OperationsTableView();
-				    TitledPane t1 = new TitledPane(y.toString(), olc);
-				    olc.setData(operationsList
+				    List<Operation> opForOneYear = operationsList
 					    .stream()
 					    .filter(o -> Year.from(o.getValueDate()).equals(y))
 					    .sorted()
-					    .collect(Collectors.toList()));
+					    .collect(Collectors.toList());
+				    double totalPerYear = opForOneYear
+					    .stream()
+					    .mapToDouble(o -> o.getAmount().doubleValue())
+					    .sum();
+				    TitledPane t1 = new TitledPane(y.toString() + " : "
+					    + new DoubleStringConverter().toString(totalPerYear), olc);
+				    olc.setData(opForOneYear);
 				    accordion.getPanes().add(t1);
 				});
 			String fromString = new_val.toString()
