@@ -61,44 +61,46 @@ public class OperationsByCategoryController {
 		    public void changed(ObservableValue<? extends Category> ov,
 					Category old_val, Category new_val) {
 			log.debug("" + old_val + "-" + new_val);
-			BankSummary bankSummaryByCategory = BankContainer.me().getBankSummaryByCategory(new_val);
-			final List<Operation> operationsList = bankSummaryByCategory.getList();
-			double total = operationsList
-				.stream()
-				.mapToDouble(o -> o.getAmount().doubleValue())
-				.sum();
-
-			List<Year> yearList = operationsList
-				.stream()
-				.map(o -> Year.from(o.getValueDate()))
-				.distinct()
-				.sorted()
-				.collect(Collectors.toList());
-
 			accordion.getPanes().clear();
+			BankSummary bankSummaryByCategory = BankContainer.me().getBankSummaryByCategory(new_val);
+			if (bankSummaryByCategory != null) {
+			    final List<Operation> operationsList = bankSummaryByCategory.getList();
+			    double total = operationsList
+				    .stream()
+				    .mapToDouble(o -> o.getAmount().doubleValue())
+				    .sum();
 
-			yearList
-				.stream()
-				.forEach(y -> {
-				    OperationsTableView olc = new OperationsTableView();
-				    List<Operation> opForOneYear = operationsList
-					    .stream()
-					    .filter(o -> Year.from(o.getValueDate()).equals(y))
-					    .sorted()
-					    .collect(Collectors.toList());
-				    double totalPerYear = opForOneYear
-					    .stream()
-					    .mapToDouble(o -> o.getAmount().doubleValue())
-					    .sum();
-				    TitledPane t1 = new TitledPane(y.toString() + " : "
-					    + new DoubleStringConverter().toString(totalPerYear), olc);
-				    olc.setData(opForOneYear);
-				    accordion.getPanes().add(t1);
-				});
-			String fromString = new_val.toString()
-				+ " : "
-				+ new DoubleStringConverter().toString(total);
-			fromLabel.setText(fromString);
+			    List<Year> yearList = operationsList
+				    .stream()
+				    .map(o -> Year.from(o.getValueDate()))
+				    .distinct()
+				    .sorted()
+				    .collect(Collectors.toList());
+
+			    yearList
+				    .stream()
+				    .forEach(y -> {
+					OperationsTableView olc = new OperationsTableView();
+					List<Operation> opForOneYear = operationsList
+						.stream()
+						.filter(o -> Year.from(o.getValueDate()).equals(y))
+						.sorted()
+						.collect(Collectors.toList());
+					double totalPerYear = opForOneYear
+						.stream()
+						.mapToDouble(o -> o.getAmount().doubleValue())
+						.sum();
+					TitledPane t1 = new TitledPane(y.toString() + " : "
+						+ new DoubleStringConverter().toString(totalPerYear), olc);
+					olc.setData(opForOneYear);
+					accordion.getPanes().add(t1);
+				    });
+			    String fromString = new_val.toString()
+				    + " : "
+				    + new DoubleStringConverter().toString(total);
+			    fromLabel.setText(fromString);
+			}
+
 		    }
 		});
     }
