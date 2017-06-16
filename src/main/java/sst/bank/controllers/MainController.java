@@ -19,6 +19,8 @@ public class MainController {
     private CategoriesController categoriesTabController;
     @FXML
     private BeneficiariesController beneficiariesTabController;
+    @FXML
+    private ProjectsController projectsTabController;
 
     public MainController() {
 	super();

@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane prefHeight="768" prefWidth="1024" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sst.bank.controllers.MainController">
-   <children>
-      <TabPane layoutX="14.0" layoutY="14.0" prefHeight="768.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <tabs>
-				<Tab fx:id="byYearTab" text="Opérations par Années">
-					<content>
-						<fx:include fx:id="byYearTab" source="OperationsByYearView.fxml" />
-					</content>
-				</Tab>
-				<Tab fx:id="byMonthTab" text="Opérations par Mois">
-					<content>
-						<fx:include fx:id="byMonthTab" source="OperationsByMonthView.fxml" />
-					</content>
-				</Tab>
-				<Tab text="Opérations par Catégories">
-					<content>
-						<fx:include fx:id="byCategoryTab" source="OperationsByCategoryView.fxml" />
-					</content>
-				</Tab>
-				<Tab text="Catégories">
-					<content>
-						<fx:include fx:id="categoriesTab" source="CategoryView.fxml" />
-					</content>
-				</Tab>
-				<Tab text="Bénéficiaires">
-					<content>
-						<fx:include fx:id="beneficiariesTab" source="BeneficiaryView.fxml" />
-					</content>
-				</Tab>
-        </tabs>
-      </TabPane>
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="768" prefWidth="1024" xmlns="http://javafx.com/javafx/8"
+            fx:controller="sst.bank.controllers.MainController">
+    <children>
+        <TabPane layoutX="14.0" layoutY="14.0" prefHeight="768.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE"
+                 AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                 AnchorPane.topAnchor="0.0">
+            <tabs>
+                <Tab text="Opérations par Années">
+                    <content>
+                        <fx:include fx:id="byYearTab" source="OperationsByYearView.fxml"/>
+                    </content>
+                </Tab>
+                <Tab text="Opérations par Mois">
+                    <content>
+                        <fx:include fx:id="byMonthTab" source="OperationsByMonthView.fxml"/>
+                    </content>
+                </Tab>
+                <Tab text="Opérations par Catégories">
+                    <content>
+                        <fx:include fx:id="byCategoryTab" source="OperationsByCategoryView.fxml"/>
+                    </content>
+                </Tab>
+                <Tab text="Catégories">
+                    <content>
+                        <fx:include fx:id="categoriesTab" source="CategoryView.fxml"/>
+                    </content>
+                </Tab>
+                <Tab text="Bénéficiaires">
+                    <content>
+                        <fx:include fx:id="beneficiariesTab" source="BeneficiaryView.fxml"/>
+                    </content>
+                </Tab>
+                <Tab text="Projets">
+                    <content>
+                        <fx:include fx:id="projectsTab" source="ProjectsView.fxml"/>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
 </AnchorPane>
