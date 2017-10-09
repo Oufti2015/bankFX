@@ -46,6 +46,20 @@ node {
       }
       stash includes: 'target/*.jar', name: 'parser_jar'
   }
+   stage('Build-skv') {
+      // Get some code from a GitHub repository
+      git 'https://github.com/Oufti2015/SKV.git'
+
+      unstash 'output_jar' 
+      
+      // Run the maven build
+      if (isUnix()) {
+         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+      } else {
+         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+      }
+      stash includes: 'target/*.jar', name: 'parser_jar'
+  }
    stage('Build-bank') {
       // Get some code from a GitHub repository
       git 'https://github.com/Oufti2015/bank.git'
