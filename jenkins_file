@@ -103,6 +103,7 @@ node {
          sh "javac -version"
          sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
       } else {
+         bat(/javac -version/)
          bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
       }
       archive 'target/*.jar'
