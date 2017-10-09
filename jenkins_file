@@ -100,6 +100,7 @@ node {
       
       // Run the maven build
       if (isUnix()) {
+         sh "javac -version"
          sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
       } else {
          bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
