@@ -90,7 +90,7 @@ node {
       }
       archive 'target/*.jar'
    }
-   stage('Build-bank') {
+   stage('Build-bankFX') {
       // Get some code from a GitHub repository
       git 'https://github.com/Oufti2015/bankFX.git'
 
