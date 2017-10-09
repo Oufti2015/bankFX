@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>sst.bank</groupId>
     <artifactId>bankFX</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <name>SST Bank FX</name>
     <dependencies>
         <dependency>
             <groupId>sst.bank</groupId>
             <artifactId>bank</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>org.testfx</groupId>
