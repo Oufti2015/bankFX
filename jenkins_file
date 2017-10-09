@@ -1,0 +1,113 @@
+node {
+   def mvnHome
+   stage('Preparation') { // for display purposes
+      // Get the Maven tool.
+      // ** NOTE: This 'M3' Maven tool must be configured
+      // **       in the global configuration.           
+      mvnHome = tool 'M3'
+   }
+   stage('Build-output') {
+      // Get some code from a GitHub repository
+      git 'https://github.com/Oufti2015/output.git'
+      // Run the maven build
+      if (isUnix()) {
+         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+      } else {
+         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+      }
+      stash includes: 'target/*.jar', name: 'output_jar' 
+   }
+   stage('Build-html') {
+      
+      // Get some code from a GitHub repository
+      git 'https://github.com/Oufti2015/html.git'
+
+      unstash 'output_jar' 
+      
+      // Run the maven build
+      if (isUnix()) {
+         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+      } else {
+         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+      }
+      stash includes: 'target/*.jar', name: 'html_jar'
+   }
+   stage('Build-parser') {
+      // Get some code from a GitHub repository
+      git 'https://github.com/Oufti2015/parser.git'
+
+      unstash 'output_jar' 
+      
+      // Run the maven build
+      if (isUnix()) {
+         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+      } else {
+         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+      }
+      stash includes: 'target/*.jar', name: 'parser_jar'
+  }
+   stage('Build-textfile') {
+      // Get some code from a GitHub repository
+      git 'https://github.com/Oufti2015/textfile.git'
+
+      unstash 'output_jar' 
+      
+      // Run the maven build
+      if (isUnix()) {
+         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+      } else {
+         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+      }
+      stash includes: 'target/*.jar', name: 'parser_jar'
+  }
+   stage('Build-skv') {
+      // Get some code from a GitHub repository
+      git 'https://github.com/Oufti2015/SKV.git'
+
+      unstash 'output_jar' 
+      
+      // Run the maven build
+      if (isUnix()) {
+         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+      } else {
+         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+      }
+      stash includes: 'target/*.jar', name: 'parser_jar'
+  }
+   stage('Build-bank') {
+      // Get some code from a GitHub repository
+      git 'https://github.com/Oufti2015/bank.git'
+
+      unstash 'output_jar' 
+      unstash 'html_jar' 
+      unstash 'parser_jar'
+      
+      // Run the maven build
+      if (isUnix()) {
+         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+      } else {
+         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+      }
+      archive 'target/*.jar'
+   }
+   stage('Build-bankFX') {
+      // Get some code from a GitHub repository
+      git 'https://github.com/Oufti2015/bankFX.git'
+
+      unstash 'output_jar' 
+      unstash 'html_jar' 
+      unstash 'parser_jar'
+      
+      // Run the maven build
+      if (isUnix()) {
+         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+      } else {
+         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+      }
+      archive 'target/*.jar'
+   }
+
+   stage('Results') {
+      archive 'target/*.jar'
+   }
+}
