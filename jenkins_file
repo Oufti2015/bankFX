@@ -6,6 +6,7 @@ node {
       // **       in the global configuration.           
       mvnHome = tool 'M3'
    }
+   
    stage('Build-output') {
       // Get some code from a GitHub repository
       git 'https://github.com/Oufti2015/output.git'
