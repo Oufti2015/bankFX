@@ -12,9 +12,9 @@ node {
       git 'https://github.com/Oufti2015/output.git'
       // Run the maven build
       if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+         sh "'${mvnHome}/bin/mvn' -DskipTests=false clean install"
       } else {
-         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+         bat(/"${mvnHome}\bin\mvn" -DskipTests=false clean package/)
       }
       stash includes: 'target/*.jar', name: 'output_jar' 
    }
@@ -41,9 +41,9 @@ node {
       
       // Run the maven build
       if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+         sh "'${mvnHome}/bin/mvn' -DskipTests=false clean install"
       } else {
-         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+         bat(/"${mvnHome}\bin\mvn" -DskipTests=false clean package/)
       }
       stash includes: 'target/*.jar', name: 'parser_jar'
   }
@@ -55,9 +55,9 @@ node {
       
       // Run the maven build
       if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+         sh "'${mvnHome}/bin/mvn' -DskipTests=false clean install"
       } else {
-         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+         bat(/"${mvnHome}\bin\mvn" -DskipTests=false clean package/)
       }
       stash includes: 'target/*.jar', name: 'parser_jar'
   }
@@ -69,9 +69,9 @@ node {
       
       // Run the maven build
       if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+         sh "'${mvnHome}/bin/mvn' -DskipTests=false clean install"
       } else {
-         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+         bat(/"${mvnHome}\bin\mvn" -DskipTests=false clean package/)
       }
       stash includes: 'target/*.jar', name: 'parser_jar'
   }
@@ -85,9 +85,9 @@ node {
       
       // Run the maven build
       if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+         sh "'${mvnHome}/bin/mvn' -DskipTests=false clean install"
       } else {
-         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+         bat(/"${mvnHome}\bin\mvn" -DskipTests=false clean package/)
       }
       archive 'target/*.jar'
    }
@@ -99,11 +99,11 @@ node {
       if (isUnix()) {
       sh "echo UNIX"
          sh "javac -version"
-       //  sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+       //  sh "'${mvnHome}/bin/mvn' -DskipTests=false clean install"
       } else {
       sh "echo BAT"
          bat(/avac -version/)
-         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+         bat(/"${mvnHome}\bin\mvn" -DskipTests=false clean package/)
       }
       archive 'target/*.jar'
 emailext body: 'Hello World', subject: 'test', to: 'stephane.stiennon@gmail.com'
