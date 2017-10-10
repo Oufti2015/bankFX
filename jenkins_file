@@ -18,7 +18,9 @@ node {
       }
       stash includes: 'target/*.jar', name: 'output_jar' 
 
-	  milestone 1
+	  lock(inversePrecedence: true, resource: 'build1') {
+	      milestone()
+	  }
    }
    stage('Build-html') {
       
