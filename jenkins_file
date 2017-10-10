@@ -97,11 +97,11 @@ node {
       
       // Run the maven build
       if (isUnix()) {
-      sh "echo UNIX"
+         echo 'UNIX'
          sh "javac -version"
        //  sh "'${mvnHome}/bin/mvn' -DskipTests=true clean install"
       } else {
-      sh "echo BAT"
+         echo 'BAT'
          bat(/avac -version/)
          bat(/"${mvnHome}\bin\mvn" -DskipTests=true clean package/)
       }
