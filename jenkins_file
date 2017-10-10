@@ -99,7 +99,7 @@ node {
       if (isUnix()) {
       sh "echo UNIX"
          sh "javac -version"
-         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+       //  sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
       } else {
       sh "echo BAT"
          bat(/avac -version/)
