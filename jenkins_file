@@ -5,8 +5,6 @@ node {
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
       mvnHome = tool 'M3'
-	  
-	  milestone()
    }
    
    stage('Build-output') {
@@ -19,6 +17,8 @@ node {
          bat(/"${mvnHome}\bin\mvn" -DskipTests=true clean package/)
       }
       stash includes: 'target/*.jar', name: 'output_jar' 
+
+	  milestone 1
    }
    stage('Build-html') {
       
@@ -34,6 +34,7 @@ node {
          bat(/"${mvnHome}\bin\mvn" -DskipTests=true clean package/)
       }
       stash includes: 'target/*.jar', name: 'html_jar'
+	  milestone 2
    }
    stage('Build-parser') {
       // Get some code from a GitHub repository
@@ -48,6 +49,7 @@ node {
          bat(/"${mvnHome}\bin\mvn" -DskipTests=true clean package/)
       }
       stash includes: 'target/*.jar', name: 'parser_jar'
+	  milestone 3
   }
    stage('Build-textfile') {
       // Get some code from a GitHub repository
@@ -62,6 +64,7 @@ node {
          bat(/"${mvnHome}\bin\mvn" -DskipTests=true clean package/)
       }
       stash includes: 'target/*.jar', name: 'parser_jar'
+	  milestone 4
   }
    stage('Build-skv') {
       // Get some code from a GitHub repository
@@ -75,7 +78,8 @@ node {
       } else {
          bat(/"${mvnHome}\bin\mvn" -DskipTests=true clean package/)
       }
-      stash includes: 'target/*.jar', name: 'parser_jar'
+      stash includes: 'target/*.jar', name: 'parser_jar'	  
+	  milestone 5
   }
    stage('Build-bank') {
       // Get some code from a GitHub repository
@@ -92,6 +96,7 @@ node {
          bat(/"${mvnHome}\bin\mvn" -DskipTests=true clean package/)
       }
       archive 'target/*.jar'
+	  milestone 6
    }
    stage('Build-bankFX') {
       // Get some code from a GitHub repository
@@ -109,6 +114,7 @@ node {
       }
       archive 'target/*.jar'
 emailext body: 'Hello World', subject: 'test', to: 'stephane.stiennon@gmail.com'
+	  milestone 7
    }
 
    stage('Results') {
