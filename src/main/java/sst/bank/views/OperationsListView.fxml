@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-
-<BorderPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sst.bank.controllers.OperationsListController">
-	<center>
-		<TableView fx:id="tableView" layoutX="0.0" layoutY="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-			<columns>
-				<TableColumn fx:id="idColumn" prefWidth="100.0" text="Id" />
-				<TableColumn fx:id="categoryColumn" prefWidth="150.0" text="Category" />
-				<!-- <TableColumn fx:id="executionDateColumn" prefWidth="140.0" text="Execution Date" />  -->
-				<TableColumn fx:id="valueDateColumn" prefWidth="140.0" text="Value Date" />
-				<TableColumn fx:id="amountColumn" prefWidth="90.0" text="Amount" />
-				<TableColumn fx:id="counterpartyColumn" prefWidth="200.0" text="Counterparty" />
-				<TableColumn fx:id="detailsColumn" prefWidth="1000.0" text="Details" />
-			</columns>
-		</TableView>
-	</center>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65"
+            fx:controller="sst.bank.controllers.OperationsListController">
+    <center>
+        <TableView fx:id="tableView" layoutX="0.0" layoutY="0.0" AnchorPane.bottomAnchor="0.0"
+                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="100.0" text="Id"/>
+                <TableColumn fx:id="categoryColumn" prefWidth="150.0" text="Category"/>
+                <!-- <TableColumn fx:id="executionDateColumn" prefWidth="140.0" text="Execution Date" />  -->
+                <TableColumn fx:id="valueDateColumn" prefWidth="140.0" text="Value Date"/>
+                <TableColumn fx:id="amountColumn" prefWidth="90.0" text="Amount"/>
+                <TableColumn fx:id="counterpartyColumn" prefWidth="200.0" text="Counterparty"/>
+                <TableColumn fx:id="detailsColumn" prefWidth="1000.0" text="Details"/>
+            </columns>
+        </TableView>
+    </center>
 </BorderPane>

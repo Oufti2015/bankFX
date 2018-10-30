@@ -2,55 +2,56 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<GridPane prefHeight="768" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sst.bank.controllers.OperationsByYearController">
-	<columnConstraints>
-		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="1.0" prefWidth="100.0" />
-		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
-		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="1.0" prefWidth="100.0" />
-		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="78.0" prefWidth="100.0" />
-		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="1.0" prefWidth="100.0" />
-	</columnConstraints>
-	<rowConstraints>
-		<RowConstraints minHeight="7.68" percentHeight="1.0" prefHeight="7.68" />
-		<RowConstraints minHeight="30.72" percentHeight="4.0" prefHeight="30.72" />
-		<RowConstraints minHeight="30.72" percentHeight="4.0" prefHeight="30.72" />
-		<RowConstraints minHeight="30.72" percentHeight="4.0" prefHeight="30.72" />
-		<RowConstraints minHeight="337.92" percentHeight="44.0" prefHeight="337.92" />
-		<RowConstraints minHeight="253.44" percentHeight="33.0" prefHeight="253.44" />
-		<RowConstraints minHeight="76.8" percentHeight="10.0" prefHeight="76.8" />
-	</rowConstraints>
-	<children>
-		<Label fx:id="byLabel" text="By" GridPane.columnIndex="3" GridPane.rowIndex="1">
-			<font>
-				<Font size="24.0" />
-			</font>
-		</Label>
-		<Label fx:id="fromLabel" text="From" GridPane.columnIndex="3" GridPane.rowIndex="2">
-			<font>
-				<Font size="24.0" />
-			</font>
-		</Label>
-		<Label fx:id="summaryLabel" text="Summary" GridPane.columnIndex="3" GridPane.rowIndex="3">
-			<font>
-				<Font size="24.0" />
-			</font>
-		</Label>
-		<AnchorPane prefHeight="591.36" prefWidth="798.72" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.rowSpan="2">
-			<children>
-				<fx:include fx:id="summaryPane" source="SummaryPaneView.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-			</children>
-		</AnchorPane>
-		<ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="4" />
-		<AnchorPane prefHeight="500.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-			<children>
-				<fx:include fx:id="total" source="TotalView.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-			</children>
-		</AnchorPane>
-	</children>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="768" prefWidth="1024.0"
+          xmlns="http://javafx.com/javafx/8.0.60" fx:controller="sst.bank.controllers.OperationsByYearController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="1.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="1.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="78.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="1.0" prefWidth="100.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="7.68" percentHeight="1.0" prefHeight="7.68"/>
+        <RowConstraints minHeight="30.72" percentHeight="4.0" prefHeight="30.72"/>
+        <RowConstraints minHeight="30.72" percentHeight="4.0" prefHeight="30.72"/>
+        <RowConstraints minHeight="30.72" percentHeight="4.0" prefHeight="30.72"/>
+        <RowConstraints minHeight="337.92" percentHeight="44.0" prefHeight="337.92"/>
+        <RowConstraints minHeight="253.44" percentHeight="33.0" prefHeight="253.44"/>
+        <RowConstraints minHeight="76.8" percentHeight="10.0" prefHeight="76.8"/>
+    </rowConstraints>
+    <children>
+        <Label fx:id="byLabel" text="By" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+        <Label fx:id="fromLabel" text="From" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+        <Label fx:id="summaryLabel" text="Summary" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+        <AnchorPane prefHeight="591.36" prefWidth="798.72" GridPane.columnIndex="3" GridPane.rowIndex="4"
+                    GridPane.rowSpan="2">
+            <children>
+                <fx:include fx:id="summaryPane" source="SummaryPaneView.fxml" AnchorPane.bottomAnchor="0.0"
+                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+            </children>
+        </AnchorPane>
+        <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                  GridPane.rowSpan="4"/>
+        <AnchorPane prefHeight="500.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <children>
+                <fx:include fx:id="total" source="TotalView.fxml" AnchorPane.bottomAnchor="0.0"
+                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+            </children>
+        </AnchorPane>
+    </children>
 </GridPane>

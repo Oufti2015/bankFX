@@ -35,59 +35,59 @@ public class EditProjectController {
 
     @FXML
     private void initialize() {
-	log.debug("initialize...");
+        log.debug("initialize...");
 
-	setEditable(false);
+        setEditable(false);
 
-	okButton.setOnAction(new EventHandler<ActionEvent>() {
+        okButton.setOnAction(new EventHandler<ActionEvent>() {
 
-	    @Override
-	    public void handle(ActionEvent e) {
-		project.setName(nameTextField.getText());
-		project.setId(idTextField.getText());
-		project.setStartDate(startDatePicker.getValue());
-		project.setEndDate(endDatePicker.getValue());
+            @Override
+            public void handle(ActionEvent e) {
+                project.setName(nameTextField.getText());
+                project.setId(idTextField.getText());
+                project.setStartDate(startDatePicker.getValue());
+                project.setEndDate(endDatePicker.getValue());
 
-		OuftiBankFX.eventBus.post(new ProjectChangeEvent(project));
-		setEditable(false);
-	    }
-	});
+                OuftiBankFX.eventBus.post(new ProjectChangeEvent(project));
+                setEditable(false);
+            }
+        });
 
-	cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-	    @Override
-	    public void handle(ActionEvent e) {
-		setProjectInfo();
-	    }
-	});
+        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                setProjectInfo();
+            }
+        });
     }
 
     private void setEditable(boolean b) {
-	nameTextField.setDisable(!b);
-	idTextField.setDisable(!b);
-	okButton.setDisable(!b);
-	cancelButton.setDisable(!b);
+        nameTextField.setDisable(!b);
+        idTextField.setDisable(!b);
+        okButton.setDisable(!b);
+        cancelButton.setDisable(!b);
     }
 
     public void setData(Project project) {
-	this.project = project;
+        this.project = project;
 
-	if (project != null) {
-	    setProjectInfo();
-	    setEditable(true);
-	}
+        if (project != null) {
+            setProjectInfo();
+            setEditable(true);
+        }
     }
 
     private void setProjectInfo() {
-	nameTextField.setText(project.getName());
-	idTextField.setText(project.getId());
-	startDatePicker.setValue(project.getStartDate());
-	endDatePicker.setValue(project.getEndDate());
+        nameTextField.setText(project.getName());
+        idTextField.setText(project.getId());
+        startDatePicker.setValue(project.getStartDate());
+        endDatePicker.setValue(project.getEndDate());
 
-	ObservableList<Operation> operations = FXCollections.observableArrayList();
-	for (Operation operation : project.getOperations()) {
-	    operations.add(operation);
-	}
+        ObservableList<Operation> operations = FXCollections.observableArrayList();
+        for (Operation operation : project.getOperations()) {
+            operations.add(operation);
+        }
 
-	operationsByProjectController.setData(new BankSummary(operations));
+        operationsByProjectController.setData(new BankSummary(operations));
     }
 }

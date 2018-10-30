@@ -23,8 +23,8 @@ public class MainController {
     private ProjectsController projectsTabController;
 
     public MainController() {
-	super();
-	log.debug("OuftiBankController...");
+        super();
+        log.debug("OuftiBankController...");
     }
 
     /**
@@ -33,23 +33,23 @@ public class MainController {
      */
     @FXML
     private void initialize() {
-	log.debug("initialize...");
-	log.debug("byYearTabController  = " + byYearTabController);
-	log.debug("byMonthTabController = " + byMonthTabController);
-	log.debug("byCategoryController = " + byCategoryTabController);
+        log.debug("initialize...");
+        log.debug("byYearTabController  = " + byYearTabController);
+        log.debug("byMonthTabController = " + byMonthTabController);
+        log.debug("byCategoryController = " + byCategoryTabController);
 
-	byCategoryTabController.setTitle(StringConstants.BY_CATEGORY);
-	byYearTabController.setListViewData(BankContainer.me().operationsByYear());
-	byMonthTabController.setListViewData(BankContainer.me().operationsByMonth());
-	byCategoryTabController.setTreeViewData(BankContainer.me().getCategories());
+        byCategoryTabController.setTitle(StringConstants.BY_CATEGORY);
+        byYearTabController.setListViewData(BankContainer.me().operationsByYear());
+        byMonthTabController.setListViewData(BankContainer.me().operationsByMonth());
+        byCategoryTabController.setTreeViewData(BankContainer.me().getCategories());
     }
 
     @FXML
     public void update() {
-	log.debug("Update...");
+        log.debug("Update...");
     }
 
     public void setOwner(OuftiBankFX ouftiBankFX) {
-	this.owner = ouftiBankFX;
+        this.owner = ouftiBankFX;
     }
 }

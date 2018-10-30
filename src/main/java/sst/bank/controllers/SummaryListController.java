@@ -1,9 +1,5 @@
 package sst.bank.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -20,8 +16,14 @@ import sst.bank.model.Category;
 import sst.bank.model.SummaryModel;
 import sst.bank.model.container.BankContainer;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Log4j
 public class SummaryListController {
+    private static Callback<TableColumn<SummaryModel, Double>, TableCell<SummaryModel, Double>> forTableColumnDouble = TextFieldTableCell
+            .<SummaryModel, Double>forTableColumn(new DoubleStringConverter());
     @FXML
     TableView<SummaryModel> budgetTableView;
     @FXML
@@ -39,51 +41,48 @@ public class SummaryListController {
      */
     @FXML
     private void initialize() {
-	log.debug("initialize...");
-	if (budgetTableView == null) {
-	    log.fatal("budgetTableView is not initialised...");
-	    OuftiBankFX.eventBus.post(new Exception("Controller not injected"));
-	}
-	if (sumCategoryColumn == null) {
-	    log.fatal("sumCategoryColumn is not initialised...");
-	    OuftiBankFX.eventBus.post(new Exception("Controller not injected"));
-	}
-	sumCategoryColumn.setCellValueFactory(new PropertyValueFactory<SummaryModel, String>("category"));
-	sumAmountColumn.setCellValueFactory(new PropertyValueFactory<SummaryModel, Double>("amount"));
-	sumBudgetColumn.setCellValueFactory(new PropertyValueFactory<SummaryModel, Double>("budget"));
-	sumDiffColumn.setCellValueFactory(new PropertyValueFactory<SummaryModel, Double>("diff"));
-	formatDoubleColumn(sumAmountColumn);
-	formatDoubleColumn(sumBudgetColumn);
-	formatDoubleColumn(sumDiffColumn);
+        log.debug("initialize...");
+        if (budgetTableView == null) {
+            log.fatal("budgetTableView is not initialised...");
+            OuftiBankFX.eventBus.post(new Exception("Controller not injected"));
+        }
+        if (sumCategoryColumn == null) {
+            log.fatal("sumCategoryColumn is not initialised...");
+            OuftiBankFX.eventBus.post(new Exception("Controller not injected"));
+        }
+        sumCategoryColumn.setCellValueFactory(new PropertyValueFactory<SummaryModel, String>("category"));
+        sumAmountColumn.setCellValueFactory(new PropertyValueFactory<SummaryModel, Double>("amount"));
+        sumBudgetColumn.setCellValueFactory(new PropertyValueFactory<SummaryModel, Double>("budget"));
+        sumDiffColumn.setCellValueFactory(new PropertyValueFactory<SummaryModel, Double>("diff"));
+        formatDoubleColumn(sumAmountColumn);
+        formatDoubleColumn(sumBudgetColumn);
+        formatDoubleColumn(sumDiffColumn);
     }
 
     public void setData(BankSummary newValue) {
-	List<SummaryModel> list = new ArrayList<>();
-	for (Category cat : newValue.getSummary().keySet()
-		.stream()
-		.map(c -> BankContainer.me().category(c.getName()))
-		.sorted(new CategoryComparator())
-		.collect(Collectors.toList())) {
-	    SummaryModel e = new SummaryModel(cat, newValue.getSummary().get(cat).amount.doubleValue(),
-		    newValue.monthQuantity());
-	    list.add(e);
-	    // log.debug("" + cat + " : " + e + " " + e.getBudget());
-	}
-	// for (Category cat2 : newValue.getSummary().keySet()) {
-	// Category cat3 = BankContainer.me().category(cat2.getName());
-	// //log.debug(" ----> " + cat2.getBudget() + " --- " +
-	// cat3.getBudget());
-	// }
+        List<SummaryModel> list = new ArrayList<>();
+        for (Category cat : newValue.getSummary().keySet()
+                .stream()
+                .map(c -> BankContainer.me().category(c.getName()))
+                .sorted(new CategoryComparator())
+                .collect(Collectors.toList())) {
+            SummaryModel e = new SummaryModel(cat, newValue.getSummary().get(cat).amount.doubleValue(),
+                    newValue.monthQuantity());
+            list.add(e);
+            // log.debug("" + cat + " : " + e + " " + e.getBudget());
+        }
+        // for (Category cat2 : newValue.getSummary().keySet()) {
+        // Category cat3 = BankContainer.me().category(cat2.getName());
+        // //log.debug(" ----> " + cat2.getBudget() + " --- " +
+        // cat3.getBudget());
+        // }
 
-	budgetTableView.getItems().setAll(list);
+        budgetTableView.getItems().setAll(list);
 
     }
 
-    private static Callback<TableColumn<SummaryModel, Double>, TableCell<SummaryModel, Double>> forTableColumnDouble = TextFieldTableCell
-	    .<SummaryModel, Double> forTableColumn(new DoubleStringConverter());
-
     private void formatDoubleColumn(TableColumn<SummaryModel, Double> column) {
-	column.setCellFactory(forTableColumnDouble);
-	column.setStyle("-fx-alignment: CENTER-RIGHT;");
+        column.setCellFactory(forTableColumnDouble);
+        column.setStyle("-fx-alignment: CENTER-RIGHT;");
     }
 }

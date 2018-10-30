@@ -1,13 +1,8 @@
 package sst.bank;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-
 import com.google.common.eventbus.DeadEvent;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,99 +16,108 @@ import sst.bank.controllers.MainController;
 import sst.bank.events.BeneficiaryChangeEvent;
 import sst.bank.events.CategoryChangeEvent;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+
 @Log4j
 public class OuftiBankFX extends Application {
-    private static final String VIEWS_MAIN_FXML = "views/Main.fxml";
-
     public static final String ICON = BankConfiguration.PATH + File.separator + "euro1.jpg";
-
+    private static final String VIEWS_MAIN_FXML = "views/Main.fxml";
     public static EventBus eventBus = new EventBus();
     private AnchorPane rootLayout;
     private Stage primaryStage;
 
     public static void main(String[] args) {
-	log.info("+----------------------------------------------------------------------------------------------+");
-	log.info("|----O-U-F-T-I----B-A-N-K----------------------------------------------------------------------|");
-	log.info("+----------------------------------------------------------------------------------------------+");
+        log.info("+----------------------------------------------------------------------------------------------+");
+        log.info("|----O-U-F-T-I----B-A-N-K----------------------------------------------------------------------|");
+        log.info("+----------------------------------------------------------------------------------------------+");
 
-	launch(args);
+        launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
-	eventBus.register(this);
+        eventBus.register(this);
 
-	// OuftiBankFX.eventBus.post(new Exception("Test"));
+        // OuftiBankFX.eventBus.post(new Exception("Test"));
 
-	LifeCycleInterface.runCompleteLifeCyle();
+        LifeCycleInterface.runCompleteLifeCyle();
 
-	// set title
-	this.primaryStage = primaryStage;
-	primaryStage.setTitle("Oufti Bank");
+        // set title
+        this.primaryStage = primaryStage;
+        primaryStage.setTitle("Oufti Bank");
 
-	initRootLayout();
-	primaryStage.setMaximized(true);
-	// primaryStage.setFullScreen(true);
-	Scene scene = primaryStage.getScene();
-	File f = new File("bankFX.css");
-	scene.getStylesheets().clear();
-	scene.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
+        initRootLayout();
+        primaryStage.setMaximized(true);
+        // primaryStage.setFullScreen(true);
+        Scene scene = primaryStage.getScene();
+        File f = new File("bankFX.css");
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
 
-	InputStream resourceAsStream = OuftiBankFX.class.getResourceAsStream(ICON);
-	if (resourceAsStream != null) {
-	    primaryStage.getIcons().add(new Image(resourceAsStream));
-	} else {
-	    log.error("Cannot load icon <" + ICON + ">");
-	    primaryStage.getIcons().add(new Image("euro3.png"));
-	}
+        // InputStream resourceAsStream =
+        // OuftiBankFX.class.getResourceAsStream(ICON);
+        String icon = "euro1.jpg";
+        try {
+            URL url = getClass().getResource(icon);
+            if (url != null) {
+                primaryStage.getIcons().add(new Image(url.openStream()));
+            } else {
+                log.error("Cannot load icon <" + icon + ">");
+                primaryStage.getIcons().add(new Image("euro1.jpg"));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Initializes the root layout.
      */
     private void initRootLayout() {
-	try {
-	    // Load root layout from fxml file.
-	    FXMLLoader loader = null;
-	    loader = new FXMLLoader();
-	    loader.setLocation(OuftiBankFX.class.getResource(VIEWS_MAIN_FXML));
-	    rootLayout = (AnchorPane) loader.load();
+        try {
+            // Load root layout from fxml file.
+            FXMLLoader loader = null;
+            loader = new FXMLLoader();
+            loader.setLocation(OuftiBankFX.class.getResource(VIEWS_MAIN_FXML));
+            rootLayout = (AnchorPane) loader.load();
 
-	    MainController controller = loader.getController();
-	    controller.setOwner(this);
+            MainController controller = loader.getController();
+            controller.setOwner(this);
 
-	    // Show the scene containing the root layout.
-	    Scene scene = new Scene(rootLayout);
-	    primaryStage.setScene(scene);
-	    primaryStage.show();
-	} catch (IOException e) {
-	    log.fatal("Cannot load " + VIEWS_MAIN_FXML + " : ", e);
-	    OuftiBankFX.eventBus.post(e);
-	}
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            log.fatal("Cannot load " + VIEWS_MAIN_FXML + " : ", e);
+            OuftiBankFX.eventBus.post(e);
+        }
     }
 
     @Subscribe
     public void handleEvent(CategoryChangeEvent e) {
-	log.info("" + e.getCategory() + " has changed.");
-	LifeCycleInterface.saveCategories();
-	// LifeCycleInterface.runCompleteLifeCyle();
+        log.info("" + e.getCategory() + " has changed.");
+        LifeCycleInterface.saveCategories();
+        // LifeCycleInterface.runCompleteLifeCyle();
     }
 
     @Subscribe
     public void handleEvent(BeneficiaryChangeEvent e) {
-	log.info("" + e.getBeneficiary() + " has changed.");
-	LifeCycleInterface.saveBeneficiaries();
-	// LifeCycleInterface.runCompleteLifeCyle();
+        log.info("" + e.getBeneficiary() + " has changed.");
+        LifeCycleInterface.saveBeneficiaries();
+        // LifeCycleInterface.runCompleteLifeCyle();
     }
 
     @Subscribe
     public void deadEvents(DeadEvent e) {
-	log.info("Event " + e.getEvent() + " not subscribed...");
+        log.info("Event " + e.getEvent() + " not subscribed...");
     }
 
     @Subscribe
     public void fatalError(Exception e) {
-	log.fatal("FATAL error detected", e);
-	System.exit(-1);
+        log.fatal("FATAL error detected", e);
+        System.exit(-1);
     }
 }

@@ -21,46 +21,46 @@ public class SummaryPaneController {
 
     @FXML
     private void initialize() {
-	log.debug("initialize...");
+        log.debug("initialize...");
 
-	log.debug("aController " + summaryListController);
+        log.debug("aController " + summaryListController);
 
-	if (summaryListController == null) {
-	    log.fatal("aController is not initialised...");
-	    OuftiBankFX.eventBus.post(new Exception("Controller not injected..."));
-	}
+        if (summaryListController == null) {
+            log.fatal("aController is not initialised...");
+            OuftiBankFX.eventBus.post(new Exception("Controller not injected..."));
+        }
 
-	roundDailGauge.getStyleClass().add("colorscheme-red-to-blue-5");
-	for (int i = 0; i < 5; i++) {
-	    Segment lSegment = new PercentSegment(roundDailGauge, i * 20.0, (i + 1) * 20.0);
-	    roundDailGauge.segments().add(lSegment);
-	}
-	tachiAnchorPane.getChildren().add(roundDailGauge);
+        roundDailGauge.getStyleClass().add("colorscheme-red-to-blue-5");
+        for (int i = 0; i < 5; i++) {
+            Segment lSegment = new PercentSegment(roundDailGauge, i * 20.0, (i + 1) * 20.0);
+            roundDailGauge.segments().add(lSegment);
+        }
+        tachiAnchorPane.getChildren().add(roundDailGauge);
     }
 
     public void setData(BankSummary bm) {
-	summaryListController.setData(bm);
+        summaryListController.setData(bm);
 
-	double maxValue = BankContainer.me().getCategories()
-		.stream()
-		.mapToDouble(c -> c.getBudget().getControlledAmount().doubleValue())
-		.filter(d -> d > 0.0)
-		.sum();
-	Double total = bm.getSummary().values()
-		.stream()
-		.mapToDouble(o -> o.amount.doubleValue())
-		.sum();
-	Double budget = BankContainer.me().getCategories()
-		.stream()
-		.mapToDouble(c -> c.getBudget().getControlledAmount().doubleValue())
-		.sum();
+        double maxValue = BankContainer.me().getCategories()
+                .stream()
+                .mapToDouble(c -> c.getBudget().getControlledAmount().doubleValue())
+                .filter(d -> d > 0.0)
+                .sum();
+        Double total = bm.getSummary().values()
+                .stream()
+                .mapToDouble(o -> o.amount.doubleValue())
+                .sum();
+        Double budget = BankContainer.me().getCategories()
+                .stream()
+                .mapToDouble(c -> c.getBudget().getControlledAmount().doubleValue())
+                .sum();
 
-	roundDailGauge.setMaxValue(maxValue);
-	double result = total - budget;
-	if (result < 0) {
-	    result = maxValue + total;
-	}
-	roundDailGauge.setValue(result >= 0.0 ? (result > maxValue ? maxValue : result) : 0.0);
+        roundDailGauge.setMaxValue(maxValue);
+        double result = total - budget;
+        if (result < 0) {
+            result = maxValue + total;
+        }
+        roundDailGauge.setValue(result >= 0.0 ? (result > maxValue ? maxValue : result) : 0.0);
 
     }
 }

@@ -1,15 +1,8 @@
 package sst.bank.model;
 
-import java.time.LocalDate;
+import javafx.beans.property.*;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import java.time.LocalDate;
 
 public class OperationModel {
     private IntegerProperty bankId;
@@ -24,134 +17,134 @@ public class OperationModel {
     private StringProperty category;
 
     public OperationModel(Operation op) {
-	this.bankId = new SimpleIntegerProperty(op.getBankId());
-	this.fortisId = new SimpleStringProperty(
-		op.getFortisId() != null ? op.getFortisId() : op.getBankId().toString());
-	this.executionDate = new SimpleObjectProperty<LocalDate>(op.getExecutionDate());
-	this.valueDate = new SimpleObjectProperty<LocalDate>(op.getValueDate());
-	this.amount = new SimpleDoubleProperty(op.getAmount().doubleValue());
-	this.counterparty = new SimpleStringProperty(op.getCounterparty());
-	this.detail = new SimpleStringProperty(op.getDetail());
-	this.category = new SimpleStringProperty(op.getCategory() == null ? "" : op.getCategory().getFxName());
+        this.bankId = new SimpleIntegerProperty(op.getBankId());
+        this.fortisId = new SimpleStringProperty(
+                op.getFortisId() != null ? op.getFortisId() : op.getBankId().toString());
+        this.executionDate = new SimpleObjectProperty<LocalDate>(op.getExecutionDate());
+        this.valueDate = new SimpleObjectProperty<LocalDate>(op.getValueDate());
+        this.amount = new SimpleDoubleProperty(op.getAmount().doubleValue());
+        this.counterparty = new SimpleStringProperty(op.getCounterparty());
+        this.detail = new SimpleStringProperty(op.getDetail());
+        this.category = new SimpleStringProperty(op.getCategory() == null ? "" : op.getCategory().getFxName());
     }
 
     public IntegerProperty bankId() {
-	return bankId;
+        return bankId;
     }
 
     public StringProperty fortisId() {
-	return fortisId;
+        return fortisId;
     }
 
     public ObjectProperty<LocalDate> executionDate() {
-	return executionDate;
+        return executionDate;
     }
 
     public ObjectProperty<LocalDate> valueDate() {
-	return valueDate;
+        return valueDate;
     }
 
     public DoubleProperty amount() {
-	return amount;
+        return amount;
     }
 
     public StringProperty currency() {
-	return currency;
+        return currency;
     }
 
     public StringProperty counterparty() {
-	return counterparty;
+        return counterparty;
     }
 
     public StringProperty detail() {
-	return detail;
+        return detail;
     }
 
     public StringProperty account() {
-	return account;
+        return account;
     }
 
     public StringProperty category() {
-	return category;
+        return category;
     }
 
     public Integer getBankId() {
-	return bankId.get();
-    }
-
-    public String getFortisId() {
-	return fortisId.get();
-    }
-
-    public LocalDate getExecutionDate() {
-	return executionDate.get();
-    }
-
-    public LocalDate getValueDate() {
-	return valueDate.get();
-    }
-
-    public Double getAmount() {
-	return amount.get();
-    }
-
-    public String getCurrency() {
-	return currency.get();
-    }
-
-    public String getCounterparty() {
-	return counterparty.get();
-    }
-
-    public String getDetail() {
-	return detail.get();
-    }
-
-    public String getAccount() {
-	return account.get();
-    }
-
-    public String getCategory() {
-	return category.get();
+        return bankId.get();
     }
 
     public void setBankId(IntegerProperty bankId) {
-	this.bankId = bankId;
+        this.bankId = bankId;
+    }
+
+    public String getFortisId() {
+        return fortisId.get();
     }
 
     public void setFortisId(StringProperty fortisId) {
-	this.fortisId = fortisId;
+        this.fortisId = fortisId;
+    }
+
+    public LocalDate getExecutionDate() {
+        return executionDate.get();
     }
 
     public void setExecutionDate(ObjectProperty<LocalDate> executionDate) {
-	this.executionDate = executionDate;
+        this.executionDate = executionDate;
+    }
+
+    public LocalDate getValueDate() {
+        return valueDate.get();
     }
 
     public void setValueDate(ObjectProperty<LocalDate> valueDate) {
-	this.valueDate = valueDate;
+        this.valueDate = valueDate;
+    }
+
+    public Double getAmount() {
+        return amount.get();
     }
 
     public void setAmount(DoubleProperty amount) {
-	this.amount = amount;
+        this.amount = amount;
+    }
+
+    public String getCurrency() {
+        return currency.get();
     }
 
     public void setCurrency(StringProperty currency) {
-	this.currency = currency;
+        this.currency = currency;
+    }
+
+    public String getCounterparty() {
+        return counterparty.get();
     }
 
     public void setCounterparty(StringProperty counterparty) {
-	this.counterparty = counterparty;
+        this.counterparty = counterparty;
+    }
+
+    public String getDetail() {
+        return detail.get();
     }
 
     public void setDetail(StringProperty detail) {
-	this.detail = detail;
+        this.detail = detail;
+    }
+
+    public String getAccount() {
+        return account.get();
     }
 
     public void setAccount(StringProperty account) {
-	this.account = account;
+        this.account = account;
+    }
+
+    public String getCategory() {
+        return category.get();
     }
 
     public void setCategory(StringProperty category) {
-	this.category = category;
+        this.category = category;
     }
 }

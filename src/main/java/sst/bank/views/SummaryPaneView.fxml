@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-
-<GridPane prefHeight="768" prefWidth="1024" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sst.bank.controllers.SummaryPaneController">
-	<columnConstraints>
-		<ColumnConstraints percentWidth="60.0" />
-		<ColumnConstraints percentWidth="40.0" />
-	</columnConstraints>
-	<rowConstraints>
-		<RowConstraints />
-	</rowConstraints>
-	<children>
-		<AnchorPane prefWidth="591.36" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-			<children>
-				<fx:include fx:id="summaryList" source="SummaryListView.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-			</children>
-		</AnchorPane>
-		<GridPane fx:id="tachiAnchorPane" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-			<columnConstraints>
-				<ColumnConstraints halignment="CENTER" percentWidth="100.0" />
-			</columnConstraints>
-			<rowConstraints>
-				<RowConstraints percentHeight="100.0" valignment="CENTER" />
-			</rowConstraints>
-		</GridPane>
-	</children>
+<?import javafx.scene.layout.*?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="768" prefWidth="1024" xmlns="http://javafx.com/javafx/8.0.60"
+          fx:controller="sst.bank.controllers.SummaryPaneController">
+    <columnConstraints>
+        <ColumnConstraints percentWidth="60.0"/>
+        <ColumnConstraints percentWidth="40.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints/>
+    </rowConstraints>
+    <children>
+        <AnchorPane prefWidth="591.36" GridPane.columnIndex="0" GridPane.halignment="CENTER"
+                    GridPane.valignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <fx:include fx:id="summaryList" source="SummaryListView.fxml" AnchorPane.bottomAnchor="0.0"
+                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+            </children>
+        </AnchorPane>
+        <GridPane fx:id="tachiAnchorPane" GridPane.columnIndex="1" GridPane.halignment="CENTER"
+                  GridPane.valignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" percentWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints percentHeight="100.0" valignment="CENTER"/>
+            </rowConstraints>
+        </GridPane>
+    </children>
 </GridPane>
