@@ -23,7 +23,7 @@ import java.net.URL;
 @Log4j
 public class OuftiBankFX extends Application {
     public static final String ICON = BankConfiguration.PATH + File.separator + "euro1.jpg";
-    private static final String VIEWS_MAIN_FXML = "views/Main.fxml";
+    private static final String VIEWS_MAIN_FXML = "/Main.fxml";
     public static EventBus eventBus = new EventBus();
     private AnchorPane rootLayout;
     private Stage primaryStage;
@@ -54,7 +54,8 @@ public class OuftiBankFX extends Application {
         Scene scene = primaryStage.getScene();
         File f = new File("bankFX.css");
         scene.getStylesheets().clear();
-        scene.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
+        scene.getStylesheets().add(String.valueOf(OuftiBankFX.class.getResource("/bankFX.css")));
+       // scene.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
 
         // InputStream resourceAsStream =
         // OuftiBankFX.class.getResourceAsStream(ICON);
@@ -80,7 +81,8 @@ public class OuftiBankFX extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = null;
             loader = new FXMLLoader();
-            loader.setLocation(OuftiBankFX.class.getResource(VIEWS_MAIN_FXML));
+            URL resource = OuftiBankFX.class.getResource(VIEWS_MAIN_FXML);
+            loader.setLocation(resource);
             rootLayout = (AnchorPane) loader.load();
 
             MainController controller = loader.getController();

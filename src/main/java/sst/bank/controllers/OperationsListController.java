@@ -1,19 +1,24 @@
 package sst.bank.controllers;
 
 import javafx.beans.binding.Bindings;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.util.Callback;
 import lombok.extern.log4j.Log4j;
 import sst.bank.controllers.utils.DoubleStringConverter;
 import sst.bank.controllers.utils.LocalDateStringConverter;
 import sst.bank.model.BankSummary;
 import sst.bank.model.OperationModel;
+import sst.bank.utils.BankClipboard;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 
@@ -62,29 +67,30 @@ public class OperationsListController {
         formatLocalDateColumn(valueDateColumn);
 
         tableView.setRowFactory(
-                new Callback<TableView<OperationModel>, TableRow<OperationModel>>() {
-                    @Override
-                    public TableRow<OperationModel> call(TableView<OperationModel> tableView) {
-                        final TableRow<OperationModel> row = new TableRow<>();
-                        final ContextMenu rowMenu = new ContextMenu();
-                        MenuItem editItem = new MenuItem("Set Category...");
-                        // editItem.setOnAction(...);
-                        // MenuItem removeItem = new MenuItem("Delete");
-                        editItem.setOnAction(new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent event) {
+                tableView -> {
+                    final TableRow<OperationModel> row = new TableRow<>();
+                    final ContextMenu rowMenu = new ContextMenu();
+                    MenuItem editItem = new MenuItem("Set Category...");
+                    // editItem.setOnAction(...);
+                    // MenuItem removeItem = new MenuItem("Delete");
+                    editItem.setOnAction(event -> {
 
-                            }
-                        });
-                        rowMenu.getItems().addAll(editItem);
+                    });
+                    rowMenu.getItems().addAll(editItem);
+                    MenuItem copyCounterpartyItem = new MenuItem("Copy Counterparty...");
+                    copyCounterpartyItem.setOnAction(event -> {
+                        ObjectProperty<OperationModel> operationModelObjectProperty = row.itemProperty();
+                        OperationModel operationModel = operationModelObjectProperty.get();
+                        BankClipboard.toClipboard(operationModel.getCounterparty());
+                    });
+                    rowMenu.getItems().addAll(copyCounterpartyItem);
 
-                        // only display context menu for non-null items:
-                        row.contextMenuProperty().bind(
-                                Bindings.when(Bindings.isNotNull(row.itemProperty()))
-                                        .then(rowMenu)
-                                        .otherwise((ContextMenu) null));
-                        return row;
-                    }
+                    // only display context menu for non-null items:
+                    row.contextMenuProperty().bind(
+                            Bindings.when(Bindings.isNotNull(row.itemProperty()))
+                                    .then(rowMenu)
+                                    .otherwise((ContextMenu) null));
+                    return row;
                 });
     }
 

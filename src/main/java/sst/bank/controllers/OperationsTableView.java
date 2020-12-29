@@ -1,15 +1,18 @@
 package sst.bank.controllers;
 
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.ObjectProperty;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.util.Callback;
 import sst.bank.controllers.utils.DoubleStringConverter;
 import sst.bank.controllers.utils.LocalDateStringConverter;
 import sst.bank.model.Operation;
 import sst.bank.model.OperationModel;
+import sst.bank.utils.BankClipboard;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -53,6 +56,33 @@ public class OperationsTableView extends TableView<OperationModel> {
         formatDoubleColumn(amountColumn);
         // formatLocalDateColumn(executionDateColumn);
         formatLocalDateColumn(valueDateColumn);
+        setRowFactory(
+                tableView -> {
+                    final TableRow<OperationModel> row = new TableRow<>();
+                    final ContextMenu rowMenu = new ContextMenu();
+                    MenuItem editItem = new MenuItem("Set Category...");
+                    // editItem.setOnAction(...);
+                    // MenuItem removeItem = new MenuItem("Delete");
+                    editItem.setOnAction(event -> {
+
+                    });
+                    rowMenu.getItems().addAll(editItem);
+                    MenuItem copyCounterpartyItem = new MenuItem("Copy Counterparty...");
+                    copyCounterpartyItem.setOnAction(event -> {
+                        ObjectProperty<OperationModel> operationModelObjectProperty = row.itemProperty();
+                        OperationModel operationModel = operationModelObjectProperty.get();
+                        BankClipboard.toClipboard(operationModel.getCounterparty());
+                    });
+                    rowMenu.getItems().addAll(copyCounterpartyItem);
+
+                    // only display context menu for non-null items:
+                    row.contextMenuProperty().bind(
+                            Bindings.when(Bindings.isNotNull(row.itemProperty()))
+                                    .then(rowMenu)
+                                    .otherwise((ContextMenu) null));
+                    return row;
+                });
+
     }
 
     private void formatDoubleColumn(TableColumn<OperationModel, Double> column) {
