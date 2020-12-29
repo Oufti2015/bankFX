@@ -2,15 +2,12 @@ package sst.bank.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import lombok.extern.log4j.Log4j;
-import org.junit.Assert;
 import sst.bank.OuftiBankFX;
 import sst.bank.events.BeneficiaryChangeEvent;
 import sst.bank.model.BankSummary;
@@ -45,29 +42,17 @@ public class EditBeneficiaryController {
     @FXML
     private void initialize() {
         log.debug("initialize...");
-        Assert.assertNotNull("mergeIntoButton is not initialized", mergeIntoButton);
-        Assert.assertNotNull("mergeIntoComboBox is not initialized", mergeIntoComboBox);
-
         setEditable(false);
 
-        okButton.setOnAction(new EventHandler<ActionEvent>() {
+        okButton.setOnAction(e -> {
+            beneficiary.setName(nameTextField.getText());
+            beneficiary.setId(idTextField.getText());
 
-            @Override
-            public void handle(ActionEvent e) {
-                beneficiary.setName(nameTextField.getText());
-                beneficiary.setId(idTextField.getText());
-
-                OuftiBankFX.eventBus.post(new BeneficiaryChangeEvent(beneficiary));
-                setEditable(false);
-            }
+            OuftiBankFX.eventBus.post(new BeneficiaryChangeEvent(beneficiary));
+            setEditable(false);
         });
 
-        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                setCategoryInfo();
-            }
-        });
+        cancelButton.setOnAction(e -> setCategoryInfo());
     }
 
     private void setEditable(boolean b) {
@@ -113,12 +98,12 @@ public class EditBeneficiaryController {
 
     @FXML
     public void mergeInto() {
-        System.out.println("Merge into...");
+        log.debug("Merge into...");
         Beneficiary from = beneficiary;
         Beneficiary into = mergeIntoComboBox.getSelectionModel().getSelectedItem();
 
-        System.out.println("Merge from " + from);
-        System.out.println("Merge into " + into);
+        log.debug("Merge from " + from);
+        log.debug("Merge into " + into);
 
         if (into != null && from != null) {
             into.getCounterparties().addAll(from.getCounterparties());
@@ -127,7 +112,6 @@ public class EditBeneficiaryController {
             BankContainer.me().beneficiaries().remove(from);
             setEditable(false);
             OuftiBankFX.eventBus.post(new BeneficiaryChangeEvent(into));
-            return;
         }
     }
 }

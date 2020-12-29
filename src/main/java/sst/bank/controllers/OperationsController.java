@@ -1,7 +1,5 @@
 package sst.bank.controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -33,13 +31,9 @@ public class OperationsController {
     protected void initialize() {
         log.debug("initialize...");
         setTitle();
-        listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<BankSummary>() {
-            @Override
-            public void changed(ObservableValue<? extends BankSummary> observable, BankSummary oldValue,
-                                BankSummary newValue) {
-                updateData(newValue);
-            }
-        });
+        listView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> updateData(newValue)
+        );
     }
 
     protected void updateData(BankSummary summary) {
@@ -56,12 +50,10 @@ public class OperationsController {
 
     public void setListViewData(Collection<BankSummary> list) {
         ObservableList<BankSummary> items = FXCollections.observableArrayList();
-        for (BankSummary item : list
+        items.addAll(list
                 .stream()
                 .sorted(new DescendingBankSummaryComparator())
-                .collect(Collectors.toList())) {
-            items.add(item);
-        }
+                .collect(Collectors.toList()));
         listView.setItems(items);
         listView.getSelectionModel().select(0);
     }

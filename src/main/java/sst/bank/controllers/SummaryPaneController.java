@@ -17,7 +17,7 @@ public class SummaryPaneController {
     @FXML
     private GridPane tachiAnchorPane;
 
-    private BasicRoundDailGauge roundDailGauge = new BasicRoundDailGauge();
+    private final BasicRoundDailGauge roundDailGauge = new BasicRoundDailGauge();
 
     @FXML
     private void initialize() {
@@ -46,11 +46,11 @@ public class SummaryPaneController {
                 .mapToDouble(c -> c.getBudget().getControlledAmount().doubleValue())
                 .filter(d -> d > 0.0)
                 .sum();
-        Double total = bm.getSummary().values()
+        double total = bm.getSummary().values()
                 .stream()
                 .mapToDouble(o -> o.amount.doubleValue())
                 .sum();
-        Double budget = BankContainer.me().getCategories()
+        double budget = BankContainer.me().getCategories()
                 .stream()
                 .mapToDouble(c -> c.getBudget().getControlledAmount().doubleValue())
                 .sum();
@@ -60,7 +60,7 @@ public class SummaryPaneController {
         if (result < 0) {
             result = maxValue + total;
         }
-        roundDailGauge.setValue(result >= 0.0 ? (result > maxValue ? maxValue : result) : 0.0);
+        roundDailGauge.setValue(result >= 0.0 ? (Math.min(result, maxValue)) : 0.0);
 
     }
 }

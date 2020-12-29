@@ -3,12 +3,9 @@ package sst.bank.controllers;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.util.Callback;
 import lombok.extern.log4j.Log4j;
 import sst.bank.controllers.utils.DoubleStringConverter;
@@ -17,8 +14,6 @@ import sst.bank.model.BankSummary;
 import sst.bank.model.OperationModel;
 import sst.bank.utils.BankClipboard;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 
@@ -53,26 +48,21 @@ public class OperationsListController {
     private void initialize() {
         log.debug("initialize...");
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, String>("fortisId"));
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, String>("category"));
-        // executionDateColumn.setCellValueFactory(new
-        // PropertyValueFactory<OperationModel, LocalDate>("executionDate"));
-        valueDateColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, LocalDate>("valueDate"));
-        amountColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, Double>("amount"));
-        counterpartyColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, String>("counterparty"));
-        detailsColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, String>("detail"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("fortisId"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+        valueDateColumn.setCellValueFactory(new PropertyValueFactory<>("valueDate"));
+        amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        counterpartyColumn.setCellValueFactory(new PropertyValueFactory<>("counterparty"));
+        detailsColumn.setCellValueFactory(new PropertyValueFactory<>("detail"));
 
         formatDoubleColumn(amountColumn);
-        // formatLocalDateColumn(executionDateColumn);
         formatLocalDateColumn(valueDateColumn);
 
         tableView.setRowFactory(
-                tableView -> {
+                tv -> {
                     final TableRow<OperationModel> row = new TableRow<>();
                     final ContextMenu rowMenu = new ContextMenu();
                     MenuItem editItem = new MenuItem("Set Category...");
-                    // editItem.setOnAction(...);
-                    // MenuItem removeItem = new MenuItem("Delete");
                     editItem.setOnAction(event -> {
 
                     });
@@ -101,7 +91,6 @@ public class OperationsListController {
 
     private void formatLocalDateColumn(TableColumn<OperationModel, LocalDate> column) {
         column.setCellFactory(forTableColumLocalDate);
-        // column.setStyle("-fx-alignment: CENTER-RIGHT;");
     }
 
     public void setData(BankSummary bm) {
@@ -109,7 +98,7 @@ public class OperationsListController {
                 .getItems()
                 .setAll(bm.getList()
                         .stream()
-                        .map(o -> new OperationModel(o))
+                        .map(OperationModel::new)
                         .collect(Collectors.toList()));
     }
 }

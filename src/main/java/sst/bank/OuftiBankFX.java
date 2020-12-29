@@ -11,21 +11,18 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lombok.extern.log4j.Log4j;
 import sst.bank.activities.LifeCycleInterface;
-import sst.bank.config.BankConfiguration;
 import sst.bank.controllers.MainController;
 import sst.bank.events.BeneficiaryChangeEvent;
 import sst.bank.events.CategoryChangeEvent;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
 @Log4j
 public class OuftiBankFX extends Application {
-    public static final String ICON = BankConfiguration.PATH + File.separator + "euro1.jpg";
+    public static final String EURO_1_JPG = "euro1.jpg";
     private static final String VIEWS_MAIN_FXML = "/Main.fxml";
-    public static EventBus eventBus = new EventBus();
-    private AnchorPane rootLayout;
+    public static final EventBus eventBus = new EventBus();
     private Stage primaryStage;
 
     public static void main(String[] args) {
@@ -40,8 +37,6 @@ public class OuftiBankFX extends Application {
     public void start(Stage primaryStage) {
         eventBus.register(this);
 
-        // OuftiBankFX.eventBus.post(new Exception("Test"));
-
         LifeCycleInterface.runCompleteLifeCyle();
 
         // set title
@@ -50,23 +45,18 @@ public class OuftiBankFX extends Application {
 
         initRootLayout();
         primaryStage.setMaximized(true);
-        // primaryStage.setFullScreen(true);
         Scene scene = primaryStage.getScene();
-        File f = new File("bankFX.css");
         scene.getStylesheets().clear();
         scene.getStylesheets().add(String.valueOf(OuftiBankFX.class.getResource("/bankFX.css")));
-       // scene.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
 
-        // InputStream resourceAsStream =
-        // OuftiBankFX.class.getResourceAsStream(ICON);
-        String icon = "euro1.jpg";
+        String icon = EURO_1_JPG;
         try {
             URL url = getClass().getResource(icon);
             if (url != null) {
                 primaryStage.getIcons().add(new Image(url.openStream()));
             } else {
                 log.error("Cannot load icon <" + icon + ">");
-                primaryStage.getIcons().add(new Image("euro1.jpg"));
+                primaryStage.getIcons().add(new Image(EURO_1_JPG));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -79,11 +69,11 @@ public class OuftiBankFX extends Application {
     private void initRootLayout() {
         try {
             // Load root layout from fxml file.
-            FXMLLoader loader = null;
+            FXMLLoader loader;
             loader = new FXMLLoader();
             URL resource = OuftiBankFX.class.getResource(VIEWS_MAIN_FXML);
             loader.setLocation(resource);
-            rootLayout = (AnchorPane) loader.load();
+            AnchorPane rootLayout = loader.load();
 
             MainController controller = loader.getController();
             controller.setOwner(this);
@@ -102,14 +92,12 @@ public class OuftiBankFX extends Application {
     public void handleEvent(CategoryChangeEvent e) {
         log.info("" + e.getCategory() + " has changed.");
         LifeCycleInterface.saveCategories();
-        // LifeCycleInterface.runCompleteLifeCyle();
     }
 
     @Subscribe
     public void handleEvent(BeneficiaryChangeEvent e) {
         log.info("" + e.getBeneficiary() + " has changed.");
         LifeCycleInterface.saveBeneficiaries();
-        // LifeCycleInterface.runCompleteLifeCyle();
     }
 
     @Subscribe

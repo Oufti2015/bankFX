@@ -2,14 +2,11 @@ package sst.bank.controllers;
 
 import com.google.common.eventbus.DeadEvent;
 import com.google.common.eventbus.Subscribe;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import lombok.extern.log4j.Log4j;
-import org.junit.Assert;
 import sst.bank.OuftiBankFX;
 import sst.bank.events.BeneficiaryChangeEvent;
 import sst.bank.model.Beneficiary;
@@ -30,8 +27,6 @@ public class BeneficiariesController {
 
         OuftiBankFX.eventBus.register(this);
 
-        Assert.assertNotNull(beneficiariesListView);
-        Assert.assertNotNull(editBeneficiaryController);
         ObservableList<Beneficiary> categories = FXCollections.observableArrayList();
         for (Beneficiary category : BankContainer.me().beneficiaries()
                 .stream()
@@ -42,13 +37,7 @@ public class BeneficiariesController {
 
         beneficiariesListView.getItems().setAll(categories);
         beneficiariesListView.getSelectionModel().selectedItemProperty().addListener(
-                new ChangeListener<Beneficiary>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Beneficiary> ov,
-                                        Beneficiary old_val, Beneficiary new_val) {
-                        editBeneficiaryController.setData(new_val);
-                    }
-                });
+                (ov, oldVal, newVal) -> editBeneficiaryController.setData(newVal));
     }
 
     @Subscribe

@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 
 @Log4j
 public class TotalController {
+    public static final String FX_ALIGNMENT_CENTER_RIGHT = "-fx-alignment: CENTER-RIGHT;";
     @FXML
     private Label operationsLabel;
     @FXML
@@ -29,11 +30,11 @@ public class TotalController {
     public void initialize() {
         log.debug("initialize...");
 
-        operationsLabel.setStyle("-fx-alignment: CENTER-RIGHT;");
-        operationsMonthLabel.setStyle("-fx-alignment: CENTER-RIGHT;");
-        totalRevenuesLabel.setStyle("-fx-alignment: CENTER-RIGHT;");
-        totalExpensesLabel.setStyle("-fx-alignment: CENTER-RIGHT;");
-        resultLabel.setStyle("-fx-alignment: CENTER-RIGHT;");
+        operationsLabel.setStyle(FX_ALIGNMENT_CENTER_RIGHT);
+        operationsMonthLabel.setStyle(FX_ALIGNMENT_CENTER_RIGHT);
+        totalRevenuesLabel.setStyle(FX_ALIGNMENT_CENTER_RIGHT);
+        totalExpensesLabel.setStyle(FX_ALIGNMENT_CENTER_RIGHT);
+        resultLabel.setStyle(FX_ALIGNMENT_CENTER_RIGHT);
     }
 
     public void setOperations(int count) {

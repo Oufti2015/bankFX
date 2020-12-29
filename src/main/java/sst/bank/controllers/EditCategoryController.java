@@ -1,14 +1,11 @@
 package sst.bank.controllers;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import lombok.extern.log4j.Log4j;
-import org.junit.Assert;
 import sst.bank.OuftiBankFX;
 import sst.bank.events.CategoryChangeEvent;
 import sst.bank.model.Budget.BudgetFrequencyType;
@@ -49,18 +46,6 @@ public class EditCategoryController {
     @FXML
     private void initialize() {
         log.debug("initialize...");
-        Assert.assertNotNull(budgetTextField);
-        Assert.assertNotNull(nameTextField);
-        Assert.assertNotNull(htmlLabelTextField);
-        Assert.assertNotNull(fxNameTextField);
-        Assert.assertNotNull(styleTextField);
-        Assert.assertNotNull(typeComboBox);
-        Assert.assertNotNull(visaCheckBox);
-        Assert.assertNotNull(defaultCheckBox);
-        Assert.assertNotNull(budgetTypeComboBox);
-        Assert.assertNotNull(budgetFreqTypeComboBox);
-        Assert.assertNotNull(okButton);
-        Assert.assertNotNull(cancelButton);
 
         setEditable(false);
 
@@ -68,34 +53,24 @@ public class EditCategoryController {
         budgetTypeComboBox.getItems().setAll(BudgetType.values());
         budgetFreqTypeComboBox.getItems().setAll(BudgetFrequencyType.values());
 
-        okButton.setOnAction(new EventHandler<ActionEvent>() {
+        okButton.setOnAction(e -> {
+            category.setName(nameTextField.getText());
+            category.setLabel(htmlLabelTextField.getText());
+            category.setFxName(fxNameTextField.getText());
+            category.setStyle(styleTextField.getText());
+            category.getBudget().setAmount(new BigDecimal(budgetTextField.getText()));
+            category.getBudget().setControlledAmount(new BigDecimal(budgetTextField.getText()));
+            category.setType(typeComboBox.getValue());
+            category.setVisa(visaCheckBox.isSelected());
+            category.setDefaultCategory(defaultCheckBox.isSelected());
+            category.getBudget().setBudgetType(budgetTypeComboBox.getValue());
+            category.getBudget().setBudgetFrequencyType(budgetFreqTypeComboBox.getValue());
 
-            @Override
-            public void handle(ActionEvent e) {
-                category.setName(nameTextField.getText());
-                category.setLabel(htmlLabelTextField.getText());
-                category.setFxName(fxNameTextField.getText());
-                category.setStyle(styleTextField.getText());
-                category.getBudget().setAmount(new BigDecimal(budgetTextField.getText()));
-                category.getBudget().setControlledAmount(new BigDecimal(budgetTextField.getText()));
-                category.setType(typeComboBox.getValue());
-                category.setVisa(visaCheckBox.isSelected());
-                category.setDefaultCategory(defaultCheckBox.isSelected());
-                category.getBudget().setBudgetType(budgetTypeComboBox.getValue());
-                category.getBudget().setBudgetFrequencyType(budgetFreqTypeComboBox.getValue());
-
-                // EventBus eb = new EventBus();
-                OuftiBankFX.eventBus.post(new CategoryChangeEvent(category));
-                setEditable(false);
-            }
+            OuftiBankFX.eventBus.post(new CategoryChangeEvent(category));
+            setEditable(false);
         });
 
-        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                setCategoryInfo();
-            }
-        });
+        cancelButton.setOnAction(e -> setCategoryInfo());
     }
 
     private void setEditable(boolean b) {

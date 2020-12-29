@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class LocalDateStringConverter extends StringConverter<LocalDate> {
-    private static DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd MMM yyyy");
+    private static final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
     @Override
     public String toString(LocalDate date) {

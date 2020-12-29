@@ -2,14 +2,11 @@ package sst.bank.controllers;
 
 import com.google.common.eventbus.DeadEvent;
 import com.google.common.eventbus.Subscribe;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import lombok.extern.log4j.Log4j;
-import org.junit.Assert;
 import sst.bank.OuftiBankFX;
 import sst.bank.events.ProjectChangeEvent;
 import sst.bank.model.Project;
@@ -30,36 +27,24 @@ public class ProjectsController {
 
         OuftiBankFX.eventBus.register(this);
 
-        Assert.assertNotNull(projectsListView);
-        Assert.assertNotNull(editProjectController);
         ObservableList<Project> projects = FXCollections.observableArrayList();
-        for (Project project : BankContainer.me().projectsContainer().projects()
+        projects.addAll(BankContainer.me().projectsContainer().projects()
                 .stream()
                 .sorted()
-                .collect(Collectors.toList())) {
-            projects.add(project);
-        }
+                .collect(Collectors.toList()));
 
         projectsListView.getItems().setAll(projects);
         projectsListView.getSelectionModel().selectedItemProperty().addListener(
-                new ChangeListener<Project>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Project> ov,
-                                        Project old_val, Project new_val) {
-                        editProjectController.setData(new_val);
-                    }
-                });
+                (ov, oldVal, newVal) -> editProjectController.setData(newVal));
     }
 
     @Subscribe
     public void handleEvent(ProjectChangeEvent e) {
         ObservableList<Project> projects = FXCollections.observableArrayList();
-        for (Project project : BankContainer.me().projectsContainer().projects()
+        projects.addAll(BankContainer.me().projectsContainer().projects()
                 .stream()
                 .sorted()
-                .collect(Collectors.toList())) {
-            projects.add(project);
-        }
+                .collect(Collectors.toList()));
         projectsListView.getItems().setAll(projects);
     }
 

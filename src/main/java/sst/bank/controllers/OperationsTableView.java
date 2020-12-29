@@ -5,8 +5,6 @@ import javafx.beans.property.ObjectProperty;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.util.Callback;
 import sst.bank.controllers.utils.DoubleStringConverter;
 import sst.bank.controllers.utils.LocalDateStringConverter;
@@ -19,13 +17,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OperationsTableView extends TableView<OperationModel> {
-    private static Callback<TableColumn<OperationModel, Double>, TableCell<OperationModel, Double>> forTableColumn = TextFieldTableCell
+    private static final Callback<TableColumn<OperationModel, Double>, TableCell<OperationModel, Double>> forTableColumn = TextFieldTableCell
             .<OperationModel, Double>forTableColumn(new DoubleStringConverter());
-    private static Callback<TableColumn<OperationModel, LocalDate>, TableCell<OperationModel, LocalDate>> forTableColumLocalDate = TextFieldTableCell
+    private static final Callback<TableColumn<OperationModel, LocalDate>, TableCell<OperationModel, LocalDate>> forTableColumLocalDate = TextFieldTableCell
             .<OperationModel, LocalDate>forTableColumn(new LocalDateStringConverter());
     private TableColumn<OperationModel, String> idColumn;
     private TableColumn<OperationModel, String> categoryColumn;
-    // private TableColumn<OperationModel, LocalDate> executionDateColumn;
     private TableColumn<OperationModel, LocalDate> valueDateColumn;
     private TableColumn<OperationModel, Double> amountColumn;
     private TableColumn<OperationModel, String> counterpartyColumn;
@@ -33,36 +30,32 @@ public class OperationsTableView extends TableView<OperationModel> {
 
     public OperationsTableView() {
         idColumn = new TableColumn<>("Id");
-        idColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, String>("fortisId"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("fortisId"));
         this.getColumns().add(idColumn);
         categoryColumn = new TableColumn<>("Category");
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, String>("category"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         this.getColumns().add(categoryColumn);
         // executionDateColumn.setCellValueFactory(new
-        // PropertyValueFactory<OperationModel, LocalDate>("executionDate"));
         valueDateColumn = new TableColumn<>("Value Date");
-        valueDateColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, LocalDate>("valueDate"));
+        valueDateColumn.setCellValueFactory(new PropertyValueFactory<>("valueDate"));
         this.getColumns().add(valueDateColumn);
         amountColumn = new TableColumn<>("Amount");
-        amountColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, Double>("amount"));
+        amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
         this.getColumns().add(amountColumn);
         counterpartyColumn = new TableColumn<>("Counterparty");
-        counterpartyColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, String>("counterparty"));
+        counterpartyColumn.setCellValueFactory(new PropertyValueFactory<>("counterparty"));
         this.getColumns().add(counterpartyColumn);
         detailsColumn = new TableColumn<>("Details");
-        detailsColumn.setCellValueFactory(new PropertyValueFactory<OperationModel, String>("detail"));
+        detailsColumn.setCellValueFactory(new PropertyValueFactory<>("detail"));
         this.getColumns().add(detailsColumn);
 
         formatDoubleColumn(amountColumn);
-        // formatLocalDateColumn(executionDateColumn);
         formatLocalDateColumn(valueDateColumn);
         setRowFactory(
                 tableView -> {
                     final TableRow<OperationModel> row = new TableRow<>();
                     final ContextMenu rowMenu = new ContextMenu();
                     MenuItem editItem = new MenuItem("Set Category...");
-                    // editItem.setOnAction(...);
-                    // MenuItem removeItem = new MenuItem("Delete");
                     editItem.setOnAction(event -> {
 
                     });
@@ -92,13 +85,12 @@ public class OperationsTableView extends TableView<OperationModel> {
 
     private void formatLocalDateColumn(TableColumn<OperationModel, LocalDate> column) {
         column.setCellFactory(forTableColumLocalDate);
-        // column.setStyle("-fx-alignment: CENTER-RIGHT;");
     }
 
     public void setData(List<Operation> list) {
         this.getItems().setAll(
                 list.stream()
-                        .map(o -> new OperationModel(o))
+                        .map(OperationModel::new)
                         .collect(Collectors.toList()));
     }
 

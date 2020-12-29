@@ -2,8 +2,6 @@ package sst.bank.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -39,26 +37,17 @@ public class EditProjectController {
 
         setEditable(false);
 
-        okButton.setOnAction(new EventHandler<ActionEvent>() {
+        okButton.setOnAction(e -> {
+            project.setName(nameTextField.getText());
+            project.setId(idTextField.getText());
+            project.setStartDate(startDatePicker.getValue());
+            project.setEndDate(endDatePicker.getValue());
 
-            @Override
-            public void handle(ActionEvent e) {
-                project.setName(nameTextField.getText());
-                project.setId(idTextField.getText());
-                project.setStartDate(startDatePicker.getValue());
-                project.setEndDate(endDatePicker.getValue());
-
-                OuftiBankFX.eventBus.post(new ProjectChangeEvent(project));
-                setEditable(false);
-            }
+            OuftiBankFX.eventBus.post(new ProjectChangeEvent(project));
+            setEditable(false);
         });
 
-        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                setProjectInfo();
-            }
-        });
+        cancelButton.setOnAction(e -> setProjectInfo());
     }
 
     private void setEditable(boolean b) {

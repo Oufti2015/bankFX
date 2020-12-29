@@ -9,7 +9,7 @@ public class DoubleStringConverter extends StringConverter<Double> {
 
     private final NumberFormat nf = NumberFormat.getNumberInstance();
 
-    {
+    public DoubleStringConverter() {
         nf.setMaximumFractionDigits(2);
         nf.setMinimumFractionDigits(2);
     }

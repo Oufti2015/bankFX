@@ -8,10 +8,10 @@ import javafx.beans.property.StringProperty;
 import java.math.BigDecimal;
 
 public class SummaryModel {
-    private StringProperty category;
-    private DoubleProperty amount;
-    private DoubleProperty budget;
-    private DoubleProperty diff;
+    private final StringProperty category;
+    private final DoubleProperty amount;
+    private final DoubleProperty budget;
+    private final DoubleProperty diff;
 
     public SummaryModel(Category category, double amount, int month) {
 

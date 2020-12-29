@@ -1,7 +1,5 @@
 package sst.bank.controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -42,62 +40,55 @@ public class OperationsByCategoryController {
 
     public void setTreeViewData(Collection<Category> list) {
         ObservableList<Category> categories = FXCollections.observableArrayList();
-        for (Category category : list
+        categories.addAll(list
                 .stream()
                 .sorted(new CategoryComparator())
-                .collect(Collectors.toList())) {
-            categories.add(category);
-        }
+                .collect(Collectors.toList()));
         categoriesListView.setItems(categories);
         categoriesListView.setEditable(true);
         categoriesListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         categoriesListView.getSelectionModel().selectedItemProperty().addListener(
-                new ChangeListener<Category>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Category> ov,
-                                        Category old_val, Category new_val) {
-                        log.debug("" + old_val + "-" + new_val);
-                        accordion.getPanes().clear();
-                        BankSummary bankSummaryByCategory = BankContainer.me().getBankSummaryByCategory(new_val);
-                        if (bankSummaryByCategory != null) {
-                            final List<Operation> operationsList = bankSummaryByCategory.getList();
-                            double total = operationsList
-                                    .stream()
-                                    .mapToDouble(o -> o.getAmount().doubleValue())
-                                    .sum();
+                (ov, oldVal, newVal) -> {
+                    log.debug("" + oldVal + "-" + newVal);
+                    accordion.getPanes().clear();
+                    BankSummary bankSummaryByCategory = BankContainer.me().getBankSummaryByCategory(newVal);
+                    if (bankSummaryByCategory != null) {
+                        final List<Operation> operationsList = bankSummaryByCategory.getList();
+                        double total = operationsList
+                                .stream()
+                                .mapToDouble(o -> o.getAmount().doubleValue())
+                                .sum();
 
-                            List<Year> yearList = operationsList
-                                    .stream()
-                                    .map(o -> Year.from(o.getValueDate()))
-                                    .distinct()
-                                    .sorted()
-                                    .collect(Collectors.toList());
+                        List<Year> yearList = operationsList
+                                .stream()
+                                .map(o -> Year.from(o.getValueDate()))
+                                .distinct()
+                                .sorted()
+                                .collect(Collectors.toList());
 
-                            yearList
-                                    .stream()
-                                    .forEach(y -> {
-                                        OperationsTableView olc = new OperationsTableView();
-                                        List<Operation> opForOneYear = operationsList
-                                                .stream()
-                                                .filter(o -> Year.from(o.getValueDate()).equals(y))
-                                                .sorted()
-                                                .collect(Collectors.toList());
-                                        double totalPerYear = opForOneYear
-                                                .stream()
-                                                .mapToDouble(o -> o.getAmount().doubleValue())
-                                                .sum();
-                                        TitledPane t1 = new TitledPane(y.toString() + " : "
-                                                + new DoubleStringConverter().toString(totalPerYear), olc);
-                                        olc.setData(opForOneYear);
-                                        accordion.getPanes().add(t1);
-                                    });
-                            String fromString = new_val.toString()
-                                    + " : "
-                                    + new DoubleStringConverter().toString(total);
-                            fromLabel.setText(fromString);
-                        }
-
+                        yearList
+                                .forEach(y -> {
+                                    OperationsTableView olc = new OperationsTableView();
+                                    List<Operation> opForOneYear = operationsList
+                                            .stream()
+                                            .filter(o -> Year.from(o.getValueDate()).equals(y))
+                                            .sorted()
+                                            .collect(Collectors.toList());
+                                    double totalPerYear = opForOneYear
+                                            .stream()
+                                            .mapToDouble(o -> o.getAmount().doubleValue())
+                                            .sum();
+                                    TitledPane t1 = new TitledPane(y.toString() + " : "
+                                            + new DoubleStringConverter().toString(totalPerYear), olc);
+                                    olc.setData(opForOneYear);
+                                    accordion.getPanes().add(t1);
+                                });
+                        String fromString = newVal.toString()
+                                + " : "
+                                + new DoubleStringConverter().toString(total);
+                        fromLabel.setText(fromString);
                     }
+
                 });
     }
 }

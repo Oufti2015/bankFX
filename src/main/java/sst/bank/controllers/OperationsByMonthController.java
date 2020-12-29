@@ -10,7 +10,7 @@ public class OperationsByMonthController extends OperationsController {
 
     @Override
     protected void setTitle() {
-        byLabel.setText(new String(StringConstants.BY_MONTH));
+        byLabel.setText(StringConstants.BY_MONTH);
     }
 
     @Override
