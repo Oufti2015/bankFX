@@ -18,8 +18,7 @@ public class OperationModel {
 
     public OperationModel(Operation op) {
         this.bankId = new SimpleIntegerProperty(op.getBankId());
-        this.fortisId = new SimpleStringProperty(
-                op.getFortisId() != null ? op.getFortisId() : op.getBankId().toString());
+        this.fortisId = new SimpleStringProperty(op.getFortisId() != null ? op.getFortisId() : op.getBankId().toString());
         this.executionDate = new SimpleObjectProperty<>(op.getExecutionDate());
         this.valueDate = new SimpleObjectProperty<>(op.getValueDate());
         this.amount = new SimpleDoubleProperty(op.getAmount().doubleValue());

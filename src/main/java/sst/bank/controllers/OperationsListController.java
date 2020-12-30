@@ -13,6 +13,7 @@ import sst.bank.controllers.utils.LocalDateStringConverter;
 import sst.bank.model.BankSummary;
 import sst.bank.model.OperationModel;
 import sst.bank.utils.BankClipboard;
+import sst.bank.utils.FXUtils;
 
 import java.time.LocalDate;
 import java.util.stream.Collectors;
@@ -58,30 +59,7 @@ public class OperationsListController {
         formatDoubleColumn(amountColumn);
         formatLocalDateColumn(valueDateColumn);
 
-        tableView.setRowFactory(
-                tv -> {
-                    final TableRow<OperationModel> row = new TableRow<>();
-                    final ContextMenu rowMenu = new ContextMenu();
-                    MenuItem editItem = new MenuItem("Set Category...");
-                    editItem.setOnAction(event -> {
-
-                    });
-                    rowMenu.getItems().addAll(editItem);
-                    MenuItem copyCounterpartyItem = new MenuItem("Copy Counterparty...");
-                    copyCounterpartyItem.setOnAction(event -> {
-                        ObjectProperty<OperationModel> operationModelObjectProperty = row.itemProperty();
-                        OperationModel operationModel = operationModelObjectProperty.get();
-                        BankClipboard.toClipboard(operationModel.getCounterparty());
-                    });
-                    rowMenu.getItems().addAll(copyCounterpartyItem);
-
-                    // only display context menu for non-null items:
-                    row.contextMenuProperty().bind(
-                            Bindings.when(Bindings.isNotNull(row.itemProperty()))
-                                    .then(rowMenu)
-                                    .otherwise((ContextMenu) null));
-                    return row;
-                });
+        FXUtils.addMenuItem(tableView);
     }
 
     private void formatDoubleColumn(TableColumn<OperationModel, Double> column) {
