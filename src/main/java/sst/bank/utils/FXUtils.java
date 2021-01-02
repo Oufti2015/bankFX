@@ -3,6 +3,8 @@ package sst.bank.utils;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.scene.control.*;
+import lombok.extern.log4j.Log4j2;
+import org.apache.commons.configuration2.ex.ConfigurationException;
 import sst.bank.config.BankConfiguration;
 import sst.bank.model.Category;
 import sst.bank.model.OperationModel;
@@ -12,6 +14,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+@Log4j2
 public class FXUtils {
     private FXUtils() {
     }
@@ -44,11 +47,10 @@ public class FXUtils {
             subItem.setOnAction(event -> {
                 Category category = catMap.get(((MenuItem) event.getSource()).getText());
                 final OperationModel item = row.getItem();
-                BankConfiguration.me().getCounterpartiesMapping().mappingPut(item.getCounterparty(), category);
                 try {
-                    BankConfiguration.me().getCounterpartiesMapping().save(BankConfiguration.me().getMappingFile(BankConfiguration.COUNTERPARTY_PROPERTIES));
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    BankConfiguration.me().getCounterpartiesMapping().putMapping(item.getCounterparty(), category);
+                } catch (ConfigurationException e) {
+                    log.error("Cannnot add mapping counterparty - Category", e);
                 }
             });
             editItem.getItems().add(subItem);

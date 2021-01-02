@@ -68,6 +68,7 @@ public class TotalController {
         Double revenues = summary.getList()
                 .stream()
                 .filter(o -> o.getAmount().compareTo(BigDecimal.ZERO) > 0)
+                .filter(o -> o.getCategory() != null)
                 .filter(o -> !o.getCategory().getBudget().getBudgetType().equals(BudgetType.SAVING))
                 .mapToDouble(o -> o.getAmount().doubleValue())
                 .sum();
@@ -76,6 +77,7 @@ public class TotalController {
         Double expenses = summary.getList()
                 .stream()
                 .filter(o -> o.getAmount().compareTo(BigDecimal.ZERO) < 0)
+                .filter(o -> o.getCategory() != null)
                 .filter(s -> !s.getCategory().getBudget().getBudgetType().equals(BudgetType.SAVING))
                 .mapToDouble(s -> s.getAmount().doubleValue())
                 .sum();
