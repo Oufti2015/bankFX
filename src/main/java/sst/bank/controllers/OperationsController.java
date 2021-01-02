@@ -5,14 +5,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import sst.bank.controllers.utils.DescendingBankSummaryComparator;
 import sst.bank.model.BankSummary;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-@Log4j
+@Log4j2
 public class OperationsController {
     @FXML
     protected Label byLabel;

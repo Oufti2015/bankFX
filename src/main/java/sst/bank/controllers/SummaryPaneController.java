@@ -5,12 +5,12 @@ import javafx.scene.layout.GridPane;
 import jfxtras.scene.control.gauge.linear.BasicRoundDailGauge;
 import jfxtras.scene.control.gauge.linear.elements.PercentSegment;
 import jfxtras.scene.control.gauge.linear.elements.Segment;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import sst.bank.OuftiBankFX;
 import sst.bank.model.BankSummary;
 import sst.bank.model.container.BankContainer;
 
-@Log4j
+@Log4j2
 public class SummaryPaneController {
     @FXML
     private SummaryListController summaryListController;

@@ -1,12 +1,12 @@
 package sst.bank.controllers;
 
 import javafx.fxml.FXML;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import sst.bank.OuftiBankFX;
 import sst.bank.model.container.BankContainer;
 import sst.bank.utils.StringConstants;
 
-@Log4j
+@Log4j2
 public class MainController {
     OuftiBankFX owner = null;
     @FXML

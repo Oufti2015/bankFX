@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import sst.bank.controllers.utils.CategoryComparator;
 import sst.bank.controllers.utils.DoubleStringConverter;
 import sst.bank.model.BankSummary;
@@ -17,7 +17,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Log4j
+@Log4j2
 public class OperationsByCategoryController {
     @FXML
     Accordion accordion;

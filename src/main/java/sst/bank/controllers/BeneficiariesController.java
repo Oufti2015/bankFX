@@ -6,7 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import sst.bank.OuftiBankFX;
 import sst.bank.events.BeneficiaryChangeEvent;
 import sst.bank.model.Beneficiary;
@@ -14,7 +14,7 @@ import sst.bank.model.container.BankContainer;
 
 import java.util.stream.Collectors;
 
-@Log4j
+@Log4j2
 public class BeneficiariesController {
     @FXML
     private ListView<Beneficiary> beneficiariesListView;

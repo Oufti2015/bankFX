@@ -1,24 +1,23 @@
 package sst.bank.controllers;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import sst.bank.controllers.utils.DoubleStringConverter;
 import sst.bank.controllers.utils.LocalDateStringConverter;
 import sst.bank.model.BankSummary;
 import sst.bank.model.OperationModel;
-import sst.bank.utils.BankClipboard;
 import sst.bank.utils.FXUtils;
 
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 
-@Log4j
+@Log4j2
 public class OperationsListController {
     private static Callback<TableColumn<OperationModel, Double>, TableCell<OperationModel, Double>> forTableColumn = TextFieldTableCell
             .<OperationModel, Double>forTableColumn(new DoubleStringConverter());

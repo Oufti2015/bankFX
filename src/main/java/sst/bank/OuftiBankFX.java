@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import sst.bank.activities.LifeCycleInterface;
 import sst.bank.controllers.MainController;
 import sst.bank.events.BeneficiaryChangeEvent;
@@ -18,7 +18,7 @@ import sst.bank.events.CategoryChangeEvent;
 import java.io.IOException;
 import java.net.URL;
 
-@Log4j
+@Log4j2
 public class OuftiBankFX extends Application {
     public static final String EURO_1_JPG = "euro1.jpg";
     private static final String VIEWS_MAIN_FXML = "/Main.fxml";

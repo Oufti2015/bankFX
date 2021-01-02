@@ -2,7 +2,7 @@ package sst.bank.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import sst.bank.controllers.utils.DoubleStringConverter;
 import sst.bank.model.BankSummary;
 import sst.bank.model.Budget.BudgetType;
@@ -10,7 +10,7 @@ import sst.bank.model.container.BankContainer;
 
 import java.math.BigDecimal;
 
-@Log4j
+@Log4j2
 public class TotalController {
     public static final String FX_ALIGNMENT_CENTER_RIGHT = "-fx-alignment: CENTER-RIGHT;";
     @FXML

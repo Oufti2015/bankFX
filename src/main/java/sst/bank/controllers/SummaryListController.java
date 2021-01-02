@@ -7,7 +7,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import sst.bank.OuftiBankFX;
 import sst.bank.controllers.utils.CategoryComparator;
 import sst.bank.controllers.utils.DoubleStringConverter;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Log4j
+@Log4j2
 public class SummaryListController {
     private static final Callback<TableColumn<SummaryModel, Double>, TableCell<SummaryModel, Double>> forTableColumnDouble
             = TextFieldTableCell.forTableColumn(new DoubleStringConverter());

@@ -6,14 +6,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import sst.bank.OuftiBankFX;
 import sst.bank.events.ProjectChangeEvent;
 import sst.bank.model.BankSummary;
 import sst.bank.model.Operation;
 import sst.bank.model.Project;
 
-@Log4j
+@Log4j2
 public class EditProjectController {
     private Project project;
     @FXML

@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import sst.bank.OuftiBankFX;
 import sst.bank.events.CategoryChangeEvent;
 import sst.bank.model.Budget.BudgetFrequencyType;
@@ -15,7 +15,7 @@ import sst.bank.model.Category.CategoryType;
 
 import java.math.BigDecimal;
 
-@Log4j
+@Log4j2
 public class EditCategoryController {
     private Category category;
     @FXML

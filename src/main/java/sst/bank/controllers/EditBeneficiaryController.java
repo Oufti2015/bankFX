@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import sst.bank.OuftiBankFX;
 import sst.bank.events.BeneficiaryChangeEvent;
 import sst.bank.model.BankSummary;
@@ -17,7 +17,7 @@ import sst.bank.model.container.BankContainer;
 
 import java.util.stream.Collectors;
 
-@Log4j
+@Log4j2
 public class EditBeneficiaryController {
     private Beneficiary beneficiary;
     @FXML
